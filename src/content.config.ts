@@ -41,4 +41,7 @@ const technologies = defineCollection({
 });
 
 // 5. Export a single `collections` object to register your collection(s)
-export const collections = { projects, technologies };
+export const collections = {
+  projects,
+  technologies,
+};

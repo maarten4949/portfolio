@@ -1,10 +1,20 @@
 ---
 import { getCollection } from "astro:content";
 import type { InferEntrySchema, RenderedContent } from "astro:content";
-const projects = await getCollection("projects");
+import { getRelativeLocaleUrl } from "astro:i18n"; // Helper function for localized links
+const currentLocale = Astro.currentLocale ? Astro.currentLocale : "en";
+const projects = await getCollection("projects", ({ id }) => {
+    const [lang, ...slug] = id.split("/");
+    return lang === currentLocale;
+});
+console.log(projects);
+interface Props {
+    title: string;
+}
+const { title } = Astro.props as Props;
 ---
 
-<h2>Projects</h2>
+<h2>{title}</h2>
 <ul>
     {
         projects.map(
@@ -17,7 +27,14 @@ const projects = await getCollection("projects");
                 filePath?: string;
             }) => (
                 <li>
-                    <a href={`/projects/${project.id}`}>{project.data.title}</a>
+                    <a
+                        href={getRelativeLocaleUrl(
+                            currentLocale,
+                            `/projects/${project.id.split("/")[1]}`, // Full path: "/projects/project-slug"
+                        )}
+                    >
+                        {project.data.title}
+                    </a>
                     <img
                         src={project.data.image.src}
                         alt={project.data.title}

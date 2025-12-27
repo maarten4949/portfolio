@@ -1,0 +1,41 @@
+---
+import Projects from "../../../components/Projects.astro";
+import Layout from "../../../layouts/Layout.astro";
+
+import { getCollection, render } from "astro:content";
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+    const projects = await getCollection("projects");
+    return projects.map((project) => {
+        const [lang, ...slugParts] = project.id.split("/");
+        const slug = slugParts.join("/");
+        return {
+            params: { id: slug, lang: lang },
+            props: { project },
+        };
+    });
+}
+import { getEntry } from "astro:content";
+
+const currentLocale = Astro.currentLocale;
+const { id } = Astro.params;
+const entryId = `${currentLocale}/${id}`;
+const project = await getEntry("projects", entryId);
+if (!project) {
+    throw new Error(`Project not found for id "${entryId}"`);
+}
+---
+
+<Layout>
+    <h1>{project.data.title}</h1>
+    <p>{project.data.description}</p>
+    <p>
+        {project.data.longDescription}
+    </p>
+    <img src={project.data.image.src} alt={project.data.title} />
+    {
+        project.data.links.map((link: { url: string; label: string }) => (
+            <a href={link.url}>{link.label}</a>
+        ))
+    }
+</Layout>

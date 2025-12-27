@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+const currentLocale = Astro.currentLocale ? Astro.currentLocale : "en";
 ---
 
 <!doctype html>
@@ -12,6 +13,39 @@ import "../styles/global.css";
         <title>Astro Basics</title>
     </head>
     <body>
+        <nav>
+            <select name="language-select" id="language-select">
+                <option value="en" selected={currentLocale === "en"}
+                    >English</option
+                >
+                <option value="nl" selected={currentLocale === "nl"}
+                    >Nederlands</option
+                >
+            </select>
+        </nav>
         <slot />
     </body>
 </html>
+
+<script>
+    const init = () => {
+        const select = document.getElementById(
+            "language-select",
+        ) as HTMLSelectElement;
+        if (select) {
+            select.addEventListener("change", () => {
+                const selectedLanguage = select.value;
+                const url = new URL(window.location.href);
+                const restOfUrl = url.pathname
+                    .split("/")
+                    .filter((part) => part !== "")
+                    .slice(1)
+                    .join("/");
+                url.pathname = `/${selectedLanguage}/${restOfUrl}`;
+                window.location.href = url.toString();
+            });
+        }
+    };
+
+    document.addEventListener("DOMContentLoaded", init);
+</script>
