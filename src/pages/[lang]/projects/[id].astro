@@ -1,8 +1,13 @@
 ---
-import Projects from "../../../components/Projects.astro";
+import {
+    getCollection,
+    render,
+    type InferEntrySchema,
+    type RenderedContent,
+} from "astro:content";
+import { getEntry } from "astro:content";
 import Layout from "../../../layouts/Layout.astro";
 
-import { getCollection, render } from "astro:content";
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
     const projects = await getCollection("projects");
@@ -15,14 +20,14 @@ export async function getStaticPaths() {
         };
     });
 }
-import { getEntry } from "astro:content";
 
 const currentLocale = Astro.currentLocale;
 const { id } = Astro.params;
+
 const entryId = `${currentLocale}/${id}`;
 const project = await getEntry("projects", entryId);
 if (!project) {
-    throw new Error(`Project not found for id "${entryId}"`);
+    return Astro.rewrite("/404");
 }
 ---
 

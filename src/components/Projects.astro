@@ -1,13 +1,14 @@
 ---
-import { getCollection } from "astro:content";
 import type { InferEntrySchema, RenderedContent } from "astro:content";
-import { getRelativeLocaleUrl } from "astro:i18n"; // Helper function for localized links
+import { getCollection } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
 const currentLocale = Astro.currentLocale ? Astro.currentLocale : "en";
 const projects = await getCollection("projects", ({ id }) => {
-    const [lang, ...slug] = id.split("/");
+    const [lang, ...slugParts] = id.split("/");
     return lang === currentLocale;
 });
-console.log(projects);
+
 interface Props {
     title: string;
 }
