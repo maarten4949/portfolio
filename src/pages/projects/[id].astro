@@ -1,0 +1,44 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+import {
+    getCollection,
+    render,
+    type InferEntrySchema,
+    type RenderedContent,
+} from "astro:content";
+// 1. Generate a new path for every collection entry
+export async function getStaticPaths() {
+    const projects = await getCollection("projects");
+    return projects.map(
+        (project: {
+            id: string;
+            body?: string;
+            collection: "projects";
+            data: InferEntrySchema<"projects">;
+            rendered?: RenderedContent;
+            filePath?: string;
+        }) => ({
+            params: { id: project.id },
+            props: { project },
+        }),
+    );
+}
+// 2. For your template, you can get the entry directly from the prop
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<Layout>
+    <h1>{project.data.title}</h1>
+    <p>{project.data.description}</p>
+    <p>
+        {project.data.longDescription}
+    </p>
+    <img src={project.data.image.src} alt={project.data.title} />
+    {
+        project.data.links.map((link: { url: string; label: string }) => (
+            <a href={link.url}>{link.label}</a>
+        ))
+    }
+</Layout>
