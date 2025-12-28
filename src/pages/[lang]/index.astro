@@ -1,11 +1,10 @@
 ---
-import Welcome from "../../components/Welcome.astro";
 import Layout from "../../layouts/Layout.astro";
 import Projects from "../../components/Projects.astro";
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Technologies from "../../components/Technologies.astro";
+import { i18n } from "astro:config/server";
 export async function getStaticPaths() {
-    const locales = ["en", "fr", "es"];
+    const locales = i18n && i18n.locales ? i18n.locales : ["en"];
     return locales.map((locale) => ({
         params: { lang: locale },
     }));
@@ -13,5 +12,6 @@ export async function getStaticPaths() {
 ---
 
 <Layout>
+    <Technologies />
     <Projects title="Projects" />
 </Layout>

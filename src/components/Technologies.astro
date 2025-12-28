@@ -1,3 +1,33 @@
 ---
-import { getCollection, getEntry } from "astro:content";
+import { getCollection, getEntry, getEntries } from "astro:content";
+const title = "Technologies";
+const currentLocale = Astro.currentLocale ? Astro.currentLocale : "en";
+const technologies = await getCollection("technologies", ({ id }) => {
+    const [lang, ...slugParts] = id.split("/");
+    return lang === currentLocale;
+});
+let referencedProjects = new Map();
+for (const technology of technologies) {
+    const projects = await getEntries(technology.data.projects);
+    referencedProjects.set(technology.id, projects);
+}
+console.log(referencedProjects);
+const localizedStrings = await import(`../locales/${currentLocale}/general.json`);
+const { technologyTitle } = localizedStrings;
 ---
+
+<h2>{technologyTitle}</h2>
+<ul>
+    {
+        technologies.map((technology) => (
+            <li>
+                {technology.data.title}
+                {console.log(technology.data.projects)}
+                {referencedProjects.get(technology.id)?.map((project: any) => (
+                    <span>{project.data.title}</span>
+                    <span>{project.data.description}</span>
+                ))}
+            </li>
+        ))
+    }
+</ul>
