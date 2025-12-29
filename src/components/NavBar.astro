@@ -1,0 +1,28 @@
+---
+const currentLocale = Astro.currentLocale ? Astro.currentLocale : "en";
+import DarkModeToggle from "./DarkModeToggle.astro";
+import LanguageSelect from "./LanguageSelect.astro";
+---
+
+<nav>
+    <a href={`/${currentLocale}`} class="navlink">Home</a>
+    <div class="actions">
+        <LanguageSelect />
+        <DarkModeToggle />
+    </div>
+</nav>
+<style>
+    .actions {
+        display: flex;
+        gap: var(--spacing-05);
+        justify-content: center;
+    }
+    .navlink {
+        font: var(--body-large-mono);
+        text-decoration: none;
+        color: var(--color-normal);
+    }
+    .navlink:hover {
+        text-decoration: underline;
+    }
+</style>

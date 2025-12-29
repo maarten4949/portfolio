@@ -1,8 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import { getEntry } from "astro:content";
-import Layout from "../../../layouts/Layout.astro";
-
+import ProjectLayout from "../../../layouts/ProjectLayout.astro";
 export async function getStaticPaths() {
     const projects = await getCollection("projects");
     return projects.map((project) => {
@@ -27,7 +26,9 @@ if (!project) {
 }
 ---
 
-<Layout>
+<ProjectLayout
+    title={project.data.title ? project.data.title : "Maarten Schaep - Project"}
+>
     <h1>{project.data.title}</h1>
     <p>{project.data.description}</p>
     <p>
@@ -39,4 +40,4 @@ if (!project) {
             <a href={link.url}>{link.label}</a>
         ))
     }
-</Layout>
+</ProjectLayout>

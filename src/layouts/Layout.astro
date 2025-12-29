@@ -1,6 +1,12 @@
 ---
 import "../styles/global.css";
 const currentLocale = Astro.currentLocale ? Astro.currentLocale : "en";
+import NavBar from "../components/NavBar.astro";
+
+const localizedStrings = await import(
+    `../locales/${currentLocale}/general.json`
+);
+const { heroTitle, heroDescription } = localizedStrings;
 ---
 
 <!doctype html>
@@ -10,42 +16,69 @@ const currentLocale = Astro.currentLocale ? Astro.currentLocale : "en";
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
-        <title>Astro Basics</title>
+        <title>Maarten Schaep Portfolio</title>
     </head>
     <body>
-        <nav>
-            <select name="language-select" id="language-select">
-                <option value="en" selected={currentLocale === "en"}
-                    >English</option
-                >
-                <option value="nl" selected={currentLocale === "nl"}
-                    >Nederlands</option
-                >
-            </select>
-        </nav>
-        <slot />
+        <NavBar />
+        <main>
+            <section class="hero">
+                <h1>{heroTitle}</h1>
+                <p class="subtitle">{heroDescription}</p>
+                <div class="hero__actions">
+                    <a href="#" class="button">
+                        <span>Download Resume</span>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-download-icon lucide-download"
+                            ><path d="M12 15V3"></path><path
+                                d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                            ></path><path d="m7 10 5 5 5-5"></path></svg
+                        >
+                    </a>
+                    <a href="#projects" class="button button--primary">
+                        <span>See my projects</span>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            class="lucide lucide-arrow-right-icon lucide-arrow-right"
+                            ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"
+                            ></path></svg
+                        >
+                    </a>
+                </div>
+            </section>
+            <slot />
+        </main>
     </body>
 </html>
-
-<script>
-    const init = () => {
-        const select = document.getElementById(
-            "language-select",
-        ) as HTMLSelectElement;
-        if (select) {
-            select.addEventListener("change", () => {
-                const selectedLanguage = select.value;
-                const url = new URL(window.location.href);
-                const restOfUrl = url.pathname
-                    .split("/")
-                    .filter((part) => part !== "")
-                    .slice(1)
-                    .join("/");
-                url.pathname = `/${selectedLanguage}/${restOfUrl}`;
-                window.location.href = url.toString();
-            });
-        }
-    };
-
-    document.addEventListener("DOMContentLoaded", init);
-</script>
+<style>
+    .hero {
+        margin: 0 auto;
+        max-width: 80ch;
+        text-align: center;
+        padding-block: var(--spacing-13);
+    }
+    .hero__actions {
+        display: flex;
+        gap: var(--spacing-07);
+        justify-content: center;
+    }
+    .subtitle {
+        font: var(--heading-subtitle);
+    }
+</style>

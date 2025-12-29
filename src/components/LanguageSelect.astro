@@ -1,0 +1,47 @@
+---
+const currentLocale = Astro.currentLocale ? Astro.currentLocale : "en";
+---
+
+<div>
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-globe-icon lucide-globe"
+        ><circle cx="12" cy="12" r="10"></circle><path
+            d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path
+            d="M2 12h20"></path></svg
+    >
+    <select name="language-select" id="language-select">
+        <option value="en" selected={currentLocale === "en"}>English</option>
+        <option value="nl" selected={currentLocale === "nl"}>Nederlands</option>
+    </select>
+</div>
+<script>
+    const init = () => {
+        const select = document.getElementById(
+            "language-select",
+        ) as HTMLSelectElement;
+        if (select) {
+            select.addEventListener("change", () => {
+                const selectedLanguage = select.value;
+                const url = new URL(window.location.href);
+                const restOfUrl = url.pathname
+                    .split("/")
+                    .filter((part) => part !== "")
+                    .slice(1)
+                    .join("/");
+                url.pathname = `/${selectedLanguage}/${restOfUrl}`;
+                window.location.href = url.toString();
+            });
+        }
+    };
+
+    document.addEventListener("DOMContentLoaded", init);
+</script>

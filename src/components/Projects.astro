@@ -14,34 +14,36 @@ const localizedStrings = await import(
 const { projectTitle } = localizedStrings;
 ---
 
-<h2>{projectTitle}</h2>
-<ul>
-    {
-        projects.map(
-            (project: {
-                id: string;
-                body?: string;
-                collection: "projects";
-                data: InferEntrySchema<"projects">;
-                rendered?: RenderedContent;
-                filePath?: string;
-            }) => (
-                <li>
-                    <a
-                        href={getRelativeLocaleUrl(
-                            currentLocale,
-                            `/projects/${project.id.split("/")[1]}`, // Full path: "/projects/project-slug"
-                        )}
-                    >
-                        {project.data.title}
-                    </a>
-                    <img
-                        src={project.data.image.src}
-                        alt={project.data.title}
-                    />
-                    <p>{project.data.description}</p>
-                </li>
-            ),
-        )
-    }
-</ul>
+<section id="projects">
+    <h2>{projectTitle}</h2>
+    <ul>
+        {
+            projects.map(
+                (project: {
+                    id: string;
+                    body?: string;
+                    collection: "projects";
+                    data: InferEntrySchema<"projects">;
+                    rendered?: RenderedContent;
+                    filePath?: string;
+                }) => (
+                    <li>
+                        <a
+                            href={getRelativeLocaleUrl(
+                                currentLocale,
+                                `/projects/${project.id.split("/")[1]}`, // Full path: "/projects/project-slug"
+                            )}
+                        >
+                            {project.data.title}
+                        </a>
+                        <img
+                            src={project.data.image.src}
+                            alt={project.data.title}
+                        />
+                        <p>{project.data.description}</p>
+                    </li>
+                ),
+            )
+        }
+    </ul>
+</section>

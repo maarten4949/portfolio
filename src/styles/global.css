@@ -1,11 +1,295 @@
+:root {
+    /* Colors */
+    --brand: #fff41a;
+    --brand-15: #fffbb2;
+    --green: #1aff48;
+    --red: #ff571a;
+    --grey-3: #f8f8f7;
+    --grey-5: #f3f3f2;
+    --grey-7: #eeeeec;
+    --grey-10: #e7e7e4;
+    --grey-15: #dbdad7;
+    --grey-20: #cfcec9;
+    --grey-25: #c2c2bc;
+    --grey-30: #b6b6af;
+    --grey-35: #aaaaa1;
+    --grey-40: #9e9e94;
+    --grey-45: #929187;
+    --grey-50: #868579;
+    --grey-55: #78786d;
+    --grey-60: #6b6b61;
+    --grey-65: #5e5d55;
+    --grey-70: #505049;
+    --grey-75: #43433d;
+    --grey-80: #363530;
+    --grey-85: #282824;
+    --grey-87: #23231f;
+    --grey-90: #1b1b18;
+    --grey-92: #151513;
+    --grey-95: #0d0d0c;
+    --grey-5-50: rgba(243, 243, 242, 0.5);
+    --grey-95-50: rgba(13, 13, 12, 0.5);
+
+    /* Radii */
+    --radius-s: 0.25rem;
+    --radius-m: 0.5rem;
+    --radius-l: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-round: 50%;
+
+    /* Font size Modular scale*/
+    --typescale-1: 0.75rem;
+    --typescale-2: 0.875rem;
+    --typescale-3: 1rem;
+    --typescale-4: 1.125rem;
+    --typescale-5: 1.25rem;
+    --typescale-6: 1.5rem;
+    --typescale-7: 1.75rem;
+    --typescale-8: 2rem;
+    --typescale-9: 2.25rem;
+    --typescale-10: 2.625rem;
+    --typescale-11: 3rem;
+    --typescale-12: 3.375rem;
+    --typescale-13: 3.75rem;
+    --typescale-14: 4.25rem;
+    --typescale-15: 4.75rem;
+
+    /* Whitespace */
+    --baseline: 0.5rem;
+    --spacing-01: 0.125rem;
+    --spacing-02: 0.25rem;
+    --spacing-03: var(--baseline);
+    --spacing-04: 0.75rem;
+    --spacing-05: 1rem;
+    --spacing-06: 1.5rem;
+    --spacing-07: 2rem;
+    --spacing-08: 2.5rem;
+    --spacing-09: 3rem;
+    --spacing-10: 4rem;
+    --spacing-11: 5rem;
+    --spacing-12: 6rem;
+    --spacing-13: 10rem;
+
+    /* Theme*/
+    --background__layer1: var(--grey-5);
+    --background__layer2: var(--grey-10);
+    --background__brand: var(--brand);
+    --background__layer3: var(--grey-15);
+    --color__normal: var(--grey-95);
+    --color__soft: var(--grey-85);
+    --color__light: var(--grey-75);
+    --color__ctabuttoncolor: var(--grey-95);
+    --background__layer1backdrop: var(--grey-5-50);
+
+    /* Font styles*/
+    --heading-h1__font-size: var(--typescale-12);
+    --heading-h1__font-family: Google Sans Flex, sans-serif;
+    --heading-h1__font-weight: 400;
+    --heading-h1__line-height: var(--spacing-10);
+
+    --heading-h2__font-size: var(--typescale-7);
+    --heading-h2__font-family: Google Sans Flex, sans-serif;
+    --heading-h2__font-weight: 400;
+    --heading-h2__line-height: var(--spacing-07);
+
+    --heading-subtitle__font-size: var(--typescale-6);
+    --heading-subtitle__font-family: Google Sans Flex, sans-serif;
+    --heading-subtitle__font-weight: 400;
+    --heading-subtitle__line-height: var(--spacing-07);
+
+    --body-regular__font-size: var(--typescale-3);
+    --body-regular__font-family: Google Sans Flex, sans-serif;
+    --body-regular__font-weight: 400;
+    --body-regular__line-height: var(--spacing-06);
+
+    --body-large__font-size: var(--typescale-5);
+    --body-large__font-family: Google Sans Flex, sans-serif;
+    --body-large__font-weight: 400;
+    --body-large__line-height: var(--spacing-07);
+
+    --body-small__font-size: var(--typescale-2);
+    --body-small__font-family: Google Sans Flex, sans-serif;
+    --body-small__font-weight: 400;
+    --body-small__line-height: var(--spacing-05);
+
+    --body-small-mono__font-size: var(--typescale-2);
+    --body-small-mono__font-family: Google Sans Code, sans-serif;
+    --body-small-mono__font-weight: 400;
+    --body-small-mono__line-height: var(--spacing-05);
+
+    --body-regular-mono__font-size: var(--typescale-3);
+    --body-regular-mono__font-family: Google Sans Code, sans-serif;
+    --body-regular-mono__font-weight: 400;
+    --body-regular-mono__line-height: var(--spacing-06);
+
+    --body-large-mono__font-size: var(--typescale-5);
+    --body-large-mono__font-family: Google Sans Code, sans-serif;
+    --body-large-mono__font-weight: 400;
+    --body-large-mono__line-height: var(--spacing-07);
+
+    --heading-h1: var(--heading-h1__font-weight)
+        var(--heading-h1__font-size)/var(--heading-h1__line-height)
+        var(--heading-h1__font-family);
+    --heading-h2: var(--heading-h2__font-weight)
+        var(--heading-h2__font-size)/var(--heading-h2__line-height)
+        var(--heading-h2__font-family);
+    --heading-subtitle: var(--heading-subtitle__font-weight)
+        var(--heading-subtitle__font-size)/var(--heading-subtitle__line-height)
+        var(--heading-subtitle__font-family);
+
+    --body-large: var(--body-large__font-weight)
+        var(--body-large__font-size)/var(--body-large__line-height)
+        var(--body-large__font-family);
+    --body-regular: var(--body-regular__font-weight)
+        var(--body-regular__font-size)/var(--body-regular__line-height)
+        var(--body-regular__font-family);
+    --body-small: var(--body-small__font-weight)
+        var(--body-small__font-size)/var(--body-small__line-height)
+        var(--body-small__font-family);
+
+    --body-large-mono: var(--body-large-mono__font-weight)
+        var(--body-large-mono__font-size)/var(--body-large-mono__line-height)
+        var(--body-large-mono__font-family);
+    --body-regular-mono: var(--body-regular-mono__font-weight)
+        var(--body-regular-mono__font-size)/var(
+            --body-regular-mono__line-height
+        )
+        var(--body-regular-mono__font-family);
+    --body-small-mono: var(--body-small-mono__font-weight)
+        var(--body-small-mono__font-size)/var(--body-small-mono__line-height)
+        var(--body-small-mono__font-family);
+
+    color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background__layer1: var(--grey-95);
+        --background__layer2: var(--grey-90);
+        --background__brand: var(--brand);
+        --background__layer3: var(--grey-85);
+        --color__normal: var(--grey-5);
+        --color__soft: var(--grey-15);
+        --color__light: var(--grey-25);
+        --color__ctabuttoncolor: var(--grey-95);
+        --background__layer1backdrop: var(--grey-95-50);
+    }
+}
+[data-theme="dark"] {
+    color-scheme: dark;
+    --background__layer1: var(--grey-95);
+    --background__layer2: var(--grey-90);
+    --background__brand: var(--brand);
+    --background__layer3: var(--grey-85);
+    --color__normal: var(--grey-5);
+    --color__soft: var(--grey-15);
+    --color__light: var(--grey-25);
+    --color__ctabuttoncolor: var(--grey-95);
+    --background__layer1backdrop: var(--grey-95-50);
+}
+[data-theme="light"] {
+    color-scheme: light;
+    --background__layer1: var(--grey-5);
+    --background__layer2: var(--grey-10);
+    --background__brand: var(--brand);
+    --background__layer3: var(--grey-15);
+    --color__normal: var(--grey-95);
+    --color__soft: var(--grey-85);
+    --color__light: var(--grey-75);
+    --color__ctabuttoncolor: var(--grey-95);
+    --background__layer1backdrop: var(--grey-5-50);
+}
+@font-face {
+    font-family: "Google Sans Code";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 300 800;
+    src: url(@fontsource-variable/google-sans-code/files/google-sans-code-latin-wght-normal.woff2)
+        format("woff2-variations");
+    unicode-range:
+        U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+        U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+        U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* google-sans-flex-latin-400-normal */
+@font-face {
+    font-family: "Google Sans Flex";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src:
+        url(@fontsource/google-sans-flex/files/google-sans-flex-latin-400-normal.woff2)
+            format("woff2"),
+        url(@fontsource/google-sans-flex/files/google-sans-flex-latin-400-normal.woff)
+            format("woff");
+    unicode-range:
+        U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+        U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+        U+2212, U+2215, U+FEFF, U+FFFD;
+}
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 html,
 body {
     width: 100%;
-    max-width: 76rem;
     height: 100%;
     margin: 0 auto;
-    padding: 2rem;
+    background-color: var(--background__layer1);
+    color: var(--color__normal);
+    font: var(--body-regular);
+    scroll-behavior: smooth;
+    scroll-padding-block: var(--spacing-07);
+}
+h1 {
+    font: var(--heading-h1);
+}
+h2 {
+    font: var(--heading-h2);
+}
+main {
+    max-width: 75rem;
+    margin: 0 auto;
+    padding-inline: var(--spacing-05);
 }
 img {
     max-width: 100%;
+}
+nav {
+    padding: var(--spacing-05);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.icon,
+.icon svg {
+    width: 1em;
+    height: 1em;
+    color: var(--color__normal);
+    stroke: currentColor;
+}
+.icon--hidden {
+    display: none;
+}
+button,
+.button {
+    background-color: var(--background__layer2);
+    color: var(--color__normal);
+    border: none;
+    padding-block: var(--spacing-04);
+    padding-inline: var(--spacing-06);
+    border-radius: var(--radius-m);
+    cursor: pointer;
+    display: flex;
+    gap: var(--spacing-03);
+    text-decoration: none;
+    align-items: center;
+}
+.button--primary {
+    background-color: var(--background__brand);
+    color: var(--color__ctabuttoncolor);
+    & .icon {
+        color: var(--color__ctabuttoncolor);
+    }
 }
