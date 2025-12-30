@@ -1,5 +1,5 @@
 ---
-import { getCollection, getEntry, getEntries } from "astro:content";
+import { getCollection, getEntry, getEntries, type InferEntrySchema, type RenderedContent } from "astro:content";
 const title = "Technologies";
 const currentLocale = Astro.currentLocale ? Astro.currentLocale : "en";
 const technologies = await getCollection("technologies", ({ id }) => {
@@ -17,17 +17,95 @@ const { technologyTitle } = localizedStrings;
 ---
 
 <h2>{technologyTitle}</h2>
-<ul>
+<ul class="technology-list">
     {
-        technologies.map((technology) => (
-            <li>
-                {technology.data.title}
+        technologies.map((technology: {
+            id: string;
+            body?: string;
+            collection: "technologies";
+            data: InferEntrySchema<"technologies">;
+            rendered?: RenderedContent;
+            filePath?: string;
+        }) => (
+            <li class="technology">
+                <img class="technology__image" src={technology.data.image.src} alt="Logo of {technology.data.title}" />
+                <div class="technology__text">
+                    <span class="technology__title">{technology.data.title}</span>
+                    <span class="technology__description">{technology.data.description}</span>
+                </div>
+
                 {console.log(technology.data.projects)}
-                {referencedProjects.get(technology.id)?.map((project: any) => (
+                <!-- {referencedProjects.get(technology.id)?.map((project: any) => (
                     <span>{project.data.title}</span>
                     <span>{project.data.description}</span>
-                ))}
+                ))} -->
             </li>
         ))
     }
 </ul>
+<style>
+.technology-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--spacing-06);
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+@media (width <= 68.75rem)
+{
+    .technology-list {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+@media (width <= 51.25rem)
+{
+    .technology-list {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-05);
+    }
+}
+@media (width <= 34rem)
+{
+    /*.technology-list {
+        grid-template-columns: auto;
+    }*/
+    .technology__description{
+        display: none;
+    }
+}
+@media (width <= 22rem)
+{
+    .technology-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+.technology {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-05);
+    background-color: var(--background__layer2);
+    border-radius: var(--radius-m);
+    padding-block: var(--spacing-04);
+    padding-inline: var(--spacing-06);
+
+}
+.technology__text {
+    display: flex;
+    flex-direction: column;
+}
+.technology__title {
+    font: var(--body-regular);
+    color: var(--color__normal);
+}
+.technology__description {
+    font: var(--body-small);
+    color: var(--color__light);
+}
+.technology__image{
+    width: var(--spacing-07);
+    height: var(--spacing-07);
+}
+</style>
