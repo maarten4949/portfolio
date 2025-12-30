@@ -82,9 +82,10 @@
     /* Theme*/
     --background__layer1: var(--grey-5);
     --background__layer2: var(--grey-10);
+    --background__layer3: var(--grey-15);
+    --background__layer4: var(--grey-20);
     --background__brand: var(--brand);
     --background__brand-alt: var(--brand-25);
-    --background__layer3: var(--grey-15);
     --color__normal: var(--grey-95);
     --color__soft: var(--grey-85);
     --color__light: var(--grey-75);
@@ -171,6 +172,8 @@
 
     --transition-duration: 200ms;
     --transition-easing: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --large-animation-duration: 1s;
+    --large-animation-easing: cubic-bezier(0.25, 0.1, 0.25, 1);
 
     color-scheme: light dark;
 }
@@ -178,9 +181,10 @@
     :root {
         --background__layer1: var(--grey-95);
         --background__layer2: var(--grey-90);
+        --background__layer3: var(--grey-85);
+        --background__layer4: var(--grey-80);
         --background__brand: var(--brand);
         --background__brand-alt: var(--brand-60);
-        --background__layer3: var(--grey-85);
         --color__normal: var(--grey-5);
         --color__soft: var(--grey-15);
         --color__light: var(--grey-25);
@@ -192,9 +196,10 @@
     color-scheme: dark;
     --background__layer1: var(--grey-95);
     --background__layer2: var(--grey-90);
+    --background__layer3: var(--grey-85);
+    --background__layer4: var(--grey-80);
     --background__brand: var(--brand);
     --background__brand-alt: var(--brand-60);
-    --background__layer3: var(--grey-85);
     --color__normal: var(--grey-5);
     --color__soft: var(--grey-15);
     --color__light: var(--grey-25);
@@ -205,9 +210,10 @@
     color-scheme: light;
     --background__layer1: var(--grey-5);
     --background__layer2: var(--grey-10);
+    --background__layer3: var(--grey-15);
+    --background__layer4: var(--grey-20);
     --background__brand: var(--brand);
     --background__brand-alt: var(--brand-25);
-    --background__layer3: var(--grey-15);
     --color__normal: var(--grey-95);
     --color__soft: var(--grey-85);
     --color__light: var(--grey-75);
@@ -246,6 +252,7 @@
 *::before,
 *::after {
     box-sizing: border-box;
+    margin: 0;
 }
 html,
 body {
@@ -257,6 +264,9 @@ body {
     font: var(--body-regular);
     scroll-behavior: smooth;
     scroll-padding-block: var(--spacing-07);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 h1 {
     font: var(--heading-h1);
@@ -268,15 +278,21 @@ main {
     max-width: 75rem;
     margin: 0 auto;
     padding-inline: var(--spacing-05);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-09);
+    flex-grow: 1;
 }
 img {
     max-width: 100%;
 }
-nav {
-    padding: var(--spacing-05);
-    width: 100%;
+
+.category {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: var(--spacing-05);
+    animation: fadeIn var(--large-animation-duration)
+        var(--large-animation-easing);
 }
 .icon,
 .icon svg {
@@ -301,10 +317,17 @@ button,
     gap: var(--spacing-03);
     text-decoration: none;
     align-items: center;
+    justify-content: center;
     transition: background-color var(--transition-duration)
         var(--transition-easing);
     &:hover {
         background-color: var(--background__layer3);
+    }
+}
+.button--layer3 {
+    background-color: var(--background__layer3);
+    &:hover {
+        background-color: var(--background__layer4);
     }
 }
 .button--primary {
@@ -319,4 +342,14 @@ button,
 }
 .no-transition .button {
     transition: none !important;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

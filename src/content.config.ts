@@ -22,6 +22,7 @@ const projects = defineCollection({
           z.object({
             url: z.string().url().min(1).max(200),
             label: z.string().min(1).max(100),
+            isPrimary: z.boolean().default(false),
           }),
         )
         .min(1)
@@ -33,6 +34,7 @@ const technologies = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string().min(1).max(100),
+      order: z.number().min(1).max(100),
       description: z.string().min(1).max(500),
       experience: z.string().min(1).max(5000),
       projects: z.array(reference("projects")),

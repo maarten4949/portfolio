@@ -2,7 +2,7 @@
 const currentLocale = Astro.currentLocale ? Astro.currentLocale : "en";
 ---
 
-<div>
+<label for="language-select" class="select-container">
     <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -22,7 +22,7 @@ const currentLocale = Astro.currentLocale ? Astro.currentLocale : "en";
         <option value="en" selected={currentLocale === "en"}>English</option>
         <option value="nl" selected={currentLocale === "nl"}>Nederlands</option>
     </select>
-</div>
+</label>
 <script>
     const init = () => {
         const select = document.getElementById(
@@ -32,6 +32,7 @@ const currentLocale = Astro.currentLocale ? Astro.currentLocale : "en";
             select.addEventListener("change", () => {
                 const selectedLanguage = select.value;
                 const url = new URL(window.location.href);
+                url.hash = "";
                 const restOfUrl = url.pathname
                     .split("/")
                     .filter((part) => part !== "")
@@ -45,3 +46,35 @@ const currentLocale = Astro.currentLocale ? Astro.currentLocale : "en";
 
     document.addEventListener("DOMContentLoaded", init);
 </script>
+<style>
+    .lucide-globe {
+        position: absolute;
+        left: var(--spacing-05);
+        pointer-events: none;
+    }
+    .select-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-05);
+    }
+    select {
+        border: none;
+        cursor: pointer;
+        color: var(--color__normal);
+        min-height: var(--spacing-08);
+        border-radius: var(--radius-m);
+        padding-block: var(--spacing-03);
+        padding-inline-start: var(--spacing-09);
+        background-color: var(--background__layer2);
+        border-right: var(--spacing-05) solid var(--background__layer2);
+        font: var(--body-small);
+        transition:
+            background-color var(--transition-duration) var(--transition-easing),
+            border-color var(--transition-duration) var(--transition-easing);
+        &:hover {
+            background-color: var(--background__layer3);
+            border-color: var(--background__layer3);
+        }
+    }
+</style>

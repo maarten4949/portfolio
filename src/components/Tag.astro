@@ -1,0 +1,18 @@
+---
+const { tag } = Astro.props;
+---
+
+<span class="tag">
+    {tag}
+</span>
+
+<style>
+    .tag {
+        font: var(--body-small-mono);
+        color: var(--color__light);
+        background-color: var(--background__layer3);
+        border-radius: var(--radius-s);
+        padding-inline: var(--spacing-02);
+        padding-block: var(--spacing-01);
+    }
+</style>

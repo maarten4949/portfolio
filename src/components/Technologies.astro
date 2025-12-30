@@ -6,6 +6,7 @@ const technologies = await getCollection("technologies", ({ id }) => {
     const [lang, ...slugParts] = id.split("/");
     return lang === currentLocale;
 });
+technologies.sort((a, b) => a.data.order - b.data.order);
 let referencedProjects = new Map();
 for (const technology of technologies) {
     const projects = await getEntries(technology.data.projects);
@@ -15,37 +16,37 @@ console.log(referencedProjects);
 const localizedStrings = await import(`../locales/${currentLocale}/general.json`);
 const { technologyTitle } = localizedStrings;
 ---
+<section class="category">
+    <h2>{technologyTitle}</h2>
+    <div class="technology-list">
+        {
+            technologies.map((technology: {
+                id: string;
+                body?: string;
+                collection: "technologies";
+                data: InferEntrySchema<"technologies">;
+                rendered?: RenderedContent;
+                filePath?: string;
+            }) => (
+                <article class="technology">
+                    <img class="technology__image" src={technology.data.image.src} alt="Logo of {technology.data.title}" />
+                    <div class="technology__text">
+                        <span class="technology__title">{technology.data.title}</span>
+                        <span class="technology__description">{technology.data.description}</span>
+                    </div>
 
-<h2>{technologyTitle}</h2>
-<ul class="technology-list">
-    {
-        technologies.map((technology: {
-            id: string;
-            body?: string;
-            collection: "technologies";
-            data: InferEntrySchema<"technologies">;
-            rendered?: RenderedContent;
-            filePath?: string;
-        }) => (
-            <li class="technology">
-                <img class="technology__image" src={technology.data.image.src} alt="Logo of {technology.data.title}" />
-                <div class="technology__text">
-                    <span class="technology__title">{technology.data.title}</span>
-                    <span class="technology__description">{technology.data.description}</span>
-                </div>
-
-                {console.log(technology.data.projects)}
-                <!-- {referencedProjects.get(technology.id)?.map((project: any) => (
-                    <span>{project.data.title}</span>
-                    <span>{project.data.description}</span>
-                ))} -->
-            </li>
-        ))
-    }
-</ul>
+                    {console.log(technology.data.projects)}
+                    <!-- {referencedProjects.get(technology.id)?.map((project: any) => (
+                        <span>{project.data.title}</span>
+                        <span>{project.data.description}</span>
+                    ))} -->
+                </article>
+            ))
+        }
+    </div>
+</section>
 <style>
 .technology-list {
-    list-style: none;
     padding: 0;
     margin: 0;
     display: grid;

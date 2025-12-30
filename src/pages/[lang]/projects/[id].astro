@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import { getEntry } from "astro:content";
 import ProjectLayout from "../../../layouts/ProjectLayout.astro";
+import Tag from "../../../components/Tag.astro";
 export async function getStaticPaths() {
     const projects = await getCollection("projects");
     return projects.map((project) => {
@@ -27,17 +28,106 @@ if (!project) {
 ---
 
 <ProjectLayout
-    title={project.data.title ? project.data.title : "Maarten Schaep - Project"}
+    title={project.data.title
+        ? project.data.title + " - Project"
+        : "Maarten Schaep - Project"}
 >
-    <h1>{project.data.title}</h1>
-    <p>{project.data.description}</p>
-    <p>
-        {project.data.longDescription}
-    </p>
-    <img src={project.data.image.src} alt={project.data.title} />
-    {
-        project.data.links.map((link: { url: string; label: string }) => (
-            <a href={link.url}>{link.label}</a>
-        ))
-    }
+    <section class="project-content">
+        <div class="project-heading">
+            <img
+                src={project.data.image.src}
+                alt={project.data.title}
+                class="project__image"
+            />
+            <div class="project-info">
+                <div class="">
+                    <h1>{project.data.title}</h1>
+                    <p>{project.data.description}</p>
+                </div>
+                <div class="tag-container">
+                    {project.data.tags.map((tag) => <Tag tag={tag} />)}
+                </div>
+            </div>
+        </div>
+        <p>
+            {project.data.longDescription}
+        </p>
+        <div class="button-container">
+            {
+                project.data.links.map(
+                    (link: {
+                        url: string;
+                        label: string;
+                        isPrimary: boolean;
+                    }) => (
+                        <a
+                            href={link.url}
+                            target="_blank"
+                            class={`button ${link.isPrimary ? "button--primary" : ""}`}
+                        >
+                            {link.label}
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-external-link-icon lucide-external-link icon"
+                            >
+                                <>
+                                    <path d="M15 3h6v6" />
+                                    <path d="M10 14 21 3" />
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                </>
+                            </svg>
+                        </a>
+                    ),
+                )
+            }
+        </div>
+    </section>
 </ProjectLayout>
+<style>
+    .project-content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-08);
+    }
+    .project-heading {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-05);
+    }
+    .project-info {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-05);
+    }
+    .project__image {
+        border-radius: var(--radius-l);
+    }
+    .tag-container {
+        display: flex;
+        gap: var(--spacing-03);
+        flex-wrap: wrap;
+    }
+    .button-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-07);
+    }
+    @media (width <= 30rem) {
+        .button-container {
+            width: 100%;
+            gap: var(--spacing-05);
+            & .button {
+                flex-grow: 1;
+            }
+        }
+    }
+</style>

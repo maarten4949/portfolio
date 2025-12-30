@@ -1,8 +1,8 @@
 ---
 title: Eco Food Calc
-description: Dit is een webshop om pottenbakken workshops te verkopen.
-longDescription: This is an e-commerce site that started as a small two-person assignment in high school (basic CRUD website, only adding, updating, inserting and deleting products as an admin was required). My teammate wanted to use it in production, but wasn’t that interested in programming herself, so I continued working on the site after high school, adding new features and improving the webshop as a freelance developer. I made the entire backend in php, I also did all the frontend javascript and about 80% of frontend html and css.
-links: [{url: "https://allertourner.be/", label: "Visit Site"}]
-tags: ["PHP", "Vanilla JS", "MySQL", "In Production", "Client Work"]
-image: "../../../assets/images/allertourner.png"
+description: Een open source tool voor de game Eco om je in-game diet te optimaliseren.
+longDescription: Ik had een tool gevonden voor de game Eco dat handig was om je in-game diet te optimaliseren. Maar ik merkte dat de UI heel basic was en dat de UX redelijk slecht was. In de README zag ik dat de maintainer nog zocht naar iemand om het design te verbeteren. Dus heb ik een Figma design gemaakt, getoond aan de maintainer, die het heel goed vond, en daarna heb ik het in code geïmplementeerd en de hele UI verbeterd en een pull request gedaan.
+links: [{url: "https://crazy-spy.github.io/EcoFoodCalc/", label: "Visit Site", isPrimary: true},{url: "https://github.com/Crazy-Spy/EcoFoodCalc", label: "Visit Source Code"}]
+tags: ["Open Source", "Vanilla JS", "Figma", "CSS", "In Production"]
+image: "../../../assets/images/EcoFoodCalc.png"
 ---
