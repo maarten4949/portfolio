@@ -18,6 +18,12 @@ const { borderRadius } = Astro.props;
                 if (element.classList.contains("booped")) {
                     return;
                 }
+                if (
+                    window.matchMedia("(prefers-reduced-motion: reduce)")
+                        .matches
+                ) {
+                    return;
+                }
                 const timeoutId = window.setTimeout(() => {
                     element.classList.toggle("booped");
                 }, timing);
@@ -29,5 +35,7 @@ const { borderRadius } = Astro.props;
 <style>
     .boop {
         display: flex;
+        justify-content: center;
+        align-items: center;
     }
 </style>

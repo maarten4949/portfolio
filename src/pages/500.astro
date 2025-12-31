@@ -4,16 +4,16 @@ const currentLocale = Astro.currentLocale ? Astro.currentLocale : "en";
 const localizedStrings = await import(
     `../locales/${currentLocale}/general.json`
 );
-const { NotFoundMessage, NotFoundButton } = localizedStrings;
+const { ServerErrorMessage, ServerErrorButton } = localizedStrings;
 ---
 
 <Layout>
     <div class="error-container">
-        <h1 class="error-heading">404 Not Found</h1>
+        <h1 class="error-heading">500 Internal Server Error</h1>
         <p>
-            {NotFoundMessage}
+            {ServerErrorMessage}
         </p>
-        <a href="/" class="button">{NotFoundButton}</a>
+        <a href="/" class="button">{ServerErrorButton}</a>
     </div>
 </Layout>
 

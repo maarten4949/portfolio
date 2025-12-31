@@ -4,5 +4,9 @@
   "projectTitle": "Projecten",
   "technologyTitle": "Technologieën",
   "downloadResume": "Download CV",
-  "seeProjects": "Projecten bekijken"
+  "seeProjects": "Projecten bekijken",
+  "NotFoundMessage": "Oeps, we konden deze pagina niet vinden.",
+  "NotFoundButton": "Terug naar homepagina",
+  "ServerErrorMessage": "Oops, er ging iets verkeerd...",
+  "ServerErrorButton": "Terug naar homepagina"
 }

@@ -94,85 +94,83 @@
     --scrollbar__background: var(--grey-20);
 
     /* Font styles*/
+    --font-mono: Google Sans Code, sans-serif;
+    --font-sans-serif: Google Sans Flex, sans-serif;
+
     --heading-h1__font-size: var(--typescale-12);
-    --heading-h1__font-family: Google Sans Flex, sans-serif;
     --heading-h1__font-weight: 400;
     --heading-h1__line-height: var(--spacing-10);
 
     --heading-h2__font-size: var(--typescale-7);
-    --heading-h2__font-family: Google Sans Flex, sans-serif;
     --heading-h2__font-weight: 400;
     --heading-h2__line-height: var(--spacing-07);
 
     --heading-subtitle__font-size: var(--typescale-6);
-    --heading-subtitle__font-family: Google Sans Flex, sans-serif;
     --heading-subtitle__font-weight: 400;
     --heading-subtitle__line-height: var(--spacing-07);
 
     --body-regular__font-size: var(--typescale-3);
-    --body-regular__font-family: Google Sans Flex, sans-serif;
     --body-regular__font-weight: 400;
     --body-regular__line-height: var(--spacing-06);
 
     --body-large__font-size: var(--typescale-5);
-    --body-large__font-family: Google Sans Flex, sans-serif;
     --body-large__font-weight: 400;
     --body-large__line-height: var(--spacing-07);
 
     --body-small__font-size: var(--typescale-2);
-    --body-small__font-family: Google Sans Flex, sans-serif;
     --body-small__font-weight: 400;
     --body-small__line-height: var(--spacing-05);
 
     --body-small-mono__font-size: var(--typescale-2);
-    --body-small-mono__font-family: Google Sans Code, sans-serif;
     --body-small-mono__font-weight: 400;
     --body-small-mono__line-height: var(--spacing-05);
 
     --body-regular-mono__font-size: var(--typescale-3);
-    --body-regular-mono__font-family: Google Sans Code, sans-serif;
     --body-regular-mono__font-weight: 400;
     --body-regular-mono__line-height: var(--spacing-06);
 
     --body-large-mono__font-size: var(--typescale-5);
-    --body-large-mono__font-family: Google Sans Code, sans-serif;
     --body-large-mono__font-weight: 400;
     --body-large-mono__line-height: var(--spacing-07);
 
     --heading-h1: var(--heading-h1__font-weight)
         var(--heading-h1__font-size)/var(--heading-h1__line-height)
-        var(--heading-h1__font-family);
+        var(--font-sans-serif);
+    --heading-h1-mono: var(--heading-h1__font-weight)
+        var(--heading-h1__font-size)/var(--heading-h1__line-height)
+        var(--font-mono);
     --heading-h2: var(--heading-h2__font-weight)
         var(--heading-h2__font-size)/var(--heading-h2__line-height)
-        var(--heading-h2__font-family);
+        var(--font-sans-serif);
     --heading-subtitle: var(--heading-subtitle__font-weight)
         var(--heading-subtitle__font-size)/var(--heading-subtitle__line-height)
-        var(--heading-subtitle__font-family);
+        var(--font-sans-serif);
 
     --body-large: var(--body-large__font-weight)
         var(--body-large__font-size)/var(--body-large__line-height)
-        var(--body-large__font-family);
+        var(--font-sans-serif);
     --body-regular: var(--body-regular__font-weight)
         var(--body-regular__font-size)/var(--body-regular__line-height)
-        var(--body-regular__font-family);
+        var(--font-sans-serif);
     --body-small: var(--body-small__font-weight)
         var(--body-small__font-size)/var(--body-small__line-height)
-        var(--body-small__font-family);
+        var(--font-sans-serif);
 
     --body-large-mono: var(--body-large-mono__font-weight)
         var(--body-large-mono__font-size)/var(--body-large-mono__line-height)
-        var(--body-large-mono__font-family);
+        var(--font-mono);
     --body-regular-mono: var(--body-regular-mono__font-weight)
         var(--body-regular-mono__font-size)/var(
             --body-regular-mono__line-height
         )
-        var(--body-regular-mono__font-family);
+        var(--font-mono);
     --body-small-mono: var(--body-small-mono__font-weight)
         var(--body-small-mono__font-size)/var(--body-small-mono__line-height)
-        var(--body-small-mono__font-family);
+        var(---font-mono);
 
     --transition-duration: 200ms;
     --transition-easing: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --short-animation-duration: 300ms;
     --dialog-animation-duration: 300ms;
     --dialog-animation-easing: cubic-bezier(0.25, 0.1, 0.25, 1);
     --dialog-animation-easing-out: ease-in;
@@ -228,34 +226,7 @@
     --background__layer1backdrop: var(--grey-5-50);
     --scrollbar__background: var(--grey-20);
 }
-@font-face {
-    font-family: "Google Sans Code";
-    font-style: normal;
-    font-display: swap;
-    font-weight: 300 800;
-    src: url(@fontsource-variable/google-sans-code/files/google-sans-code-latin-wght-normal.woff2)
-        format("woff2-variations");
-    unicode-range:
-        U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
-        U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
-        U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* google-sans-flex-latin-400-normal */
-@font-face {
-    font-family: "Google Sans Flex";
-    font-style: normal;
-    font-display: swap;
-    font-weight: 400;
-    src:
-        url(@fontsource/google-sans-flex/files/google-sans-flex-latin-400-normal.woff2)
-            format("woff2"),
-        url(@fontsource/google-sans-flex/files/google-sans-flex-latin-400-normal.woff)
-            format("woff");
-    unicode-range:
-        U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
-        U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
-        U+2212, U+2215, U+FEFF, U+FFFD;
-}
+
 *,
 *::before,
 *::after {
@@ -286,7 +257,7 @@ h2 {
 main {
     max-width: 75rem;
     margin: 0 auto;
-    padding-inline: var(--spacing-07);
+    padding-inline: var(--spacing-06);
     display: flex;
     flex-direction: column;
     gap: var(--spacing-09);
@@ -304,7 +275,9 @@ button {
     color: var(--color__normal);
     cursor: pointer;
 }
-
+.error-heading {
+    font: var(--heading-h1-mono);
+}
 .category {
     display: flex;
     flex-direction: column;
@@ -362,14 +335,14 @@ button {
 }
 
 .lucide-moon {
-    transform-origin: bottom center;
+    transform-origin: bottom right;
     transition:
         transform var(--transition-duration) var(--transition-easing),
         rotate var(--transition-duration) var(--transition-easing);
-    animation: rotateIn 0.3s ease;
+    animation: rotateIn var(--short-animation-duration) var(--transition-easing);
 }
 .lucide-sun {
-    animation: scaleIn 0.3s ease;
+    animation: scaleIn var(--short-animation-duration) var(--transition-easing);
     transition:
         transform var(--transition-duration) var(--transition-easing),
         rotate var(--transition-duration) var(--transition-easing),
@@ -549,5 +522,81 @@ button {
         & .boop {
             flex-grow: 1;
         }
+    }
+}
+
+select:open::picker-icon {
+    rotate: 135deg;
+}
+.language-select {
+    min-width: 20ch;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 2px;
+    padding: 0.5rem;
+    background-color: var(--background__layer2);
+    color: var(--color__normal);
+    overflow: visible;
+    gap: var(--spacing-05);
+    border-radius: var(--radius-m);
+    &::picker-icon {
+        content: "";
+        display: inline-flex;
+        width: 0.5rem;
+        height: 0.5rem;
+        overflow: visible;
+        margin-right: var(--spacing-02);
+        z-index: 2;
+        border-bottom: 2px solid var(--color__normal);
+        border-left: 2px solid var(--color__normal);
+        transform-origin: center;
+        transform: translateX(3px);
+
+        rotate: -45deg;
+        transition: rotate var(--transition-duration) var(--transition-easing);
+    }
+    &,
+    &::picker(select) {
+        appearance: base-select;
+        color: var(--color__normal);
+        border: none;
+        border-radius: var(--radius-m);
+    }
+    &::picker(select) {
+        background-color: var(--background__layer2);
+    }
+    option {
+        padding: var(--spacing-03);
+        padding-inline-start: var(--spacing-09);
+        &::checkmark {
+            content: none;
+        }
+        &:hover {
+            background: var(--background__layer4);
+        }
+        &:focus {
+            background: var(--background__layer3);
+        }
+        &:focus-visible {
+            border: 1px solid white;
+            border-radius: var(--radius-m);
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --transition-duration: 0s !important;
+        --dialog-animation-duration: 0s !important;
+        --short-animation-duration: 0s !important;
+        --large-animation-duration: 0s !important;
+        transition: none !important;
+        animation: none !important;
+    }
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+        animation: none !important;
     }
 }

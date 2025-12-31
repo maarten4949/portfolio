@@ -14,7 +14,7 @@ import Boop from "./Boop.astro";
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="lucide lucide-moon-icon lucide-moon dark-icon"
+            class="lucide lucide-moon-icon lucide-moon dark-icon icon"
             ><path
                 d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"
             ></path></svg
@@ -28,7 +28,7 @@ import Boop from "./Boop.astro";
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="lucide lucide-sun-icon lucide-sun light-icon"
+            class="lucide lucide-sun-icon lucide-sun light-icon icon"
             ><circle cx="12" cy="12" r="4" class="circle"></circle><path
                 d="M12 2v2"
                 class="path1"></path><path d="M12 20v2" class="path2"
@@ -56,6 +56,7 @@ import Boop from "./Boop.astro";
                 document.documentElement.classList.remove("no-transition");
             });
         } else {
+            console.log("no transition");
             toggleTheme(theme);
         }
     };
@@ -82,6 +83,7 @@ import Boop from "./Boop.astro";
             "theme set due to localstorage set: " +
                 localStorage.getItem("theme"),
         );
+
         setTheme(localStorageTheme, true);
     } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
         console.log("Dark mode is preferred");
@@ -95,12 +97,16 @@ import Boop from "./Boop.astro";
         button = document.querySelector(".dark-mode-toggle");
         if (button) {
             button.addEventListener("click", () => {
+                const prefersReducedMotion = window.matchMedia(
+                    "(prefers-reduced-motion: reduce)",
+                ).matches;
+                console.log("prefers reduced motion: " + prefersReducedMotion);
                 setTheme(
                     document.documentElement.getAttribute("data-theme") ===
                         "dark"
                         ? "light"
                         : "dark",
-                    false,
+                    prefersReducedMotion,
                 );
             });
         }
@@ -111,14 +117,19 @@ import Boop from "./Boop.astro";
 <style>
     .dark-mode-toggle {
         display: flex;
+        align-items: center;
         overflow: hidden;
         padding: var(--spacing-03, 0.5rem);
         border-radius: var(--border-radius-round, 50%);
         & .light-icon {
             display: inline-block;
+            width: 1.5rem;
+            height: 1.5rem;
         }
         & .dark-icon {
             display: none;
+            width: 1.5rem;
+            height: 1.5rem;
         }
         &.dark {
             & .light-icon {

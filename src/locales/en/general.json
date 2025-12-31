@@ -4,5 +4,9 @@
   "projectTitle": "Projects",
   "technologyTitle": "Technologies",
   "downloadResume": "Download Resume",
-  "seeProjects": "See my projects"
+  "seeProjects": "See my projects",
+  "NotFoundMessage": "Oops, we couldn't find the page you were looking for.",
+  "NotFoundButton": "Back to home page",
+  "ServerErrorMessage": "Oops, something went wrong...",
+  "ServerErrorButton": "Back to home page"
 }

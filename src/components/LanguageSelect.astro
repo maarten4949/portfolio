@@ -20,7 +20,29 @@ import Boop from "./Boop.astro";
                 d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path
                 d="M2 12h20"></path></svg
         >
-        <select name="language-select" id="language-select">
+        <select
+            class="language-select"
+            name="language-select"
+            id="language-select"
+        >
+            <button>
+                <selectedcontent></selectedcontent>
+                <span class="arrow"
+                    ><svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-chevron-down-icon lucide-chevron-down"
+                        ><path d="m6 9 6 6 6-6"></path></svg
+                    ></span
+                >
+            </button>
             <option value="en" selected={currentLocale === "en"}>English</option
             >
             <option value="nl" selected={currentLocale === "nl"}
@@ -59,6 +81,7 @@ import Boop from "./Boop.astro";
         pointer-events: none;
     }
     .select-container {
+        view-transition-name: language-select;
         position: relative;
         display: flex;
         align-items: center;
