@@ -3,6 +3,7 @@ import type { InferEntrySchema, RenderedContent } from "astro:content";
 import { getCollection } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import Tag from "../components/Tag.astro";
+import Boop from "./Boop.astro";
 const currentLocale = Astro.currentLocale ? Astro.currentLocale : "en";
 const projects = await getCollection("projects", ({ id }) => {
     const [lang, ...slugParts] = id.split("/");
@@ -44,34 +45,42 @@ const { projectTitle } = localizedStrings;
                                 <Tag tag={tag} />
                             ))}
                         </div>
-                        <a
-                            class="button button--layer3"
-                            href={getRelativeLocaleUrl(
-                                currentLocale,
-                                `/projects/${project.id.split("/")[1]}`, // Full path: "/projects/project-slug"
-                            )}
-                            target="_blank"
-                        >
-                            View Project{" "}
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="lucide lucide-external-link-icon lucide-external-link icon"
+                        <Boop borderRadius="var(--radius-m)">
+                            <a
+                                class="button button--layer3 button--full-width"
+                                href={getRelativeLocaleUrl(
+                                    currentLocale,
+                                    `/projects/${project.id.split("/")[1]}`, // Full path: "/projects/project-slug"
+                                )}
+                                target="_blank"
                             >
-                                <>
-                                    <path d="M15 3h6v6" />
-                                    <path d="M10 14 21 3" />
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                </>
-                            </svg>
-                        </a>
+                                View Project{" "}
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-external-link-icon lucide-external-link icon"
+                                >
+                                    <>
+                                        <path
+                                            d="M15 3h6v6"
+                                            class="arrow-head"
+                                        />
+                                        <path d="M10 14 21 3" class="arrow" />
+                                        <path
+                                            d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                            class="box"
+                                        />
+                                    </>
+                                </svg>
+                            </a>
+                        </Boop>
                     </article>
                 ),
             )

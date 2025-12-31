@@ -1,42 +1,49 @@
 ---
-
+import Boop from "./Boop.astro";
 ---
 
-<button class="dark-mode-toggle"
-    ><svg
-        class="dark-icon"
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lucide lucide-moon-icon lucide-moon icon"
-        ><path
-            d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"
-        ></path></svg
-    ><svg
-        class="light-icon"
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="lucide lucide-sun-icon lucide-sun icon"
-        ><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path
-            d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path
-            d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path
-            d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path
-            d="m19.07 4.93-1.41 1.41"></path></svg
-    ></button
->
+<Boop borderRadius="50%">
+    <button class="dark-mode-toggle">
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-moon-icon lucide-moon dark-icon"
+            ><path
+                d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"
+            ></path></svg
+        ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-sun-icon lucide-sun light-icon"
+            ><circle cx="12" cy="12" r="4" class="circle"></circle><path
+                d="M12 2v2"
+                class="path1"></path><path d="M12 20v2" class="path2"
+            ></path><path d="m4.93 4.93 1.41 1.41" class="path3"></path><path
+                d="m17.66 17.66 1.41 1.41"
+                class="path4"></path><path d="M2 12h2" class="path5"
+            ></path><path d="M20 12h2" class="path6"></path><path
+                d="m6.34 17.66-1.41 1.41"
+                class="path7"></path><path
+                d="m19.07 4.93-1.41 1.41"
+                class="path8"></path></svg
+        >
+    </button>
+</Boop>
+
 <script is:inline>
     let button;
     const setTheme = (theme, noTransition) => {
@@ -103,6 +110,8 @@
 </script>
 <style>
     .dark-mode-toggle {
+        display: flex;
+        overflow: hidden;
         padding: var(--spacing-03, 0.5rem);
         border-radius: var(--border-radius-round, 50%);
         & .light-icon {

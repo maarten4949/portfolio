@@ -1,0 +1,33 @@
+---
+const { borderRadius } = Astro.props;
+---
+
+<span
+    class="boop"
+    style={`border-radius: ${borderRadius ? borderRadius : "0"};`}
+>
+    <slot />
+</span>
+
+<script>
+    const timing = 200;
+    document.addEventListener("DOMContentLoaded", () => {
+        const boopElements = document.querySelectorAll(".boop");
+        boopElements.forEach((element) => {
+            element.addEventListener("mouseenter", () => {
+                if (element.classList.contains("booped")) {
+                    return;
+                }
+                const timeoutId = window.setTimeout(() => {
+                    element.classList.toggle("booped");
+                }, timing);
+                element.classList.toggle("booped");
+            });
+        });
+    });
+</script>
+<style>
+    .boop {
+        display: flex;
+    }
+</style>

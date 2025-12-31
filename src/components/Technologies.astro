@@ -1,5 +1,9 @@
 ---
 import { getCollection, getEntry, getEntries, type InferEntrySchema, type RenderedContent } from "astro:content";
+import Tag from "./Tag.astro";
+import Boop from "./Boop.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
 const title = "Technologies";
 const currentLocale = Astro.currentLocale ? Astro.currentLocale : "en";
 const technologies = await getCollection("technologies", ({ id }) => {
@@ -28,7 +32,7 @@ const { technologyTitle } = localizedStrings;
                 rendered?: RenderedContent;
                 filePath?: string;
             }) => (
-                <article class="technology">
+                <button class="technology dialog-button" id={technology.id}>
                     <img class="technology__image" src={technology.data.image.src} alt="Logo of {technology.data.title}" />
                     <div class="technology__text">
                         <span class="technology__title">{technology.data.title}</span>
@@ -40,12 +44,219 @@ const { technologyTitle } = localizedStrings;
                         <span>{project.data.title}</span>
                         <span>{project.data.description}</span>
                     ))} -->
-                </article>
+                </button>
+                <dialog id={`dialog-${technology.id}`} closedby="any">
+                    <div class="dialog">
+
+                    <div class="dialog-header">
+                        <div class="technology">
+                            <img class="technology__image" src={technology.data.image.src} alt="Logo of {technology.data.title}" />
+                            <div class="technology__text">
+                                <span class="technology__title">{technology.data.title}</span>
+                                <span class="technology__description">{technology.data.description}</span>
+                            </div>
+                        </div>
+                        <form method="dialog">
+                            <button class="close-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x-icon lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+                        </form>
+                    </div>
+                    <div class="dialog-content">
+                        <div class="experience">
+                            <h3>My experience</h3>
+                            <p>{technology.data.experience}</p>
+                        </div>
+                        {referencedProjects.get(technology.id).length > 0 && (
+                            <div>
+                                <h3 class="projectTitle">Projects</h3>
+                                <div class="projects-list">
+
+                                {referencedProjects.get(technology.id)?.map((project: any) => (
+                                <article class="project">
+                                    <img
+                                        class="project__image"
+                                        src={project.data.image.src}
+                                        alt={project.data.title}
+                                    />
+                                    <div class="project__heading">
+                                        <h3>{project.data.title}</h3>
+                                        <p class="project__description">
+                                            {project.data.description}
+                                        </p>
+                                    </div>
+                                    <div class="tag-container">
+                                        {project.data.tags.map((tag: any) => (
+                                            <Tag tag={tag} />
+                                        ))}
+                                    </div>
+                                    <Boop borderRadius="var(--radius-m)">
+                                        <a
+                                            class="button button--layer3 button--full-width"
+                                            href={getRelativeLocaleUrl(
+                                                currentLocale,
+                                                `/projects/${project.id.split("/")[1]}`, // Full path: "/projects/project-slug"
+                                            )}
+                                            target="_blank"
+                                        >
+                                            View Project{" "}
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="lucide lucide-external-link-icon lucide-external-link icon"
+                                            >
+                                                <>
+                                                    <path
+                                                        d="M15 3h6v6"
+                                                        class="arrow-head"
+                                                    />
+                                                    <path d="M10 14 21 3" class="arrow" />
+                                                    <path
+                                                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                                        class="box"
+                                                    />
+                                                </>
+                                            </svg>
+                                        </a>
+                                    </Boop>
+                                </article>
+                                ))}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                    </div>
+                </dialog>
             ))
         }
     </div>
 </section>
+<script>
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".dialog-button");
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      const dialogId = "dialog-" + button.id;
+      const dialog = document.getElementById(dialogId) as HTMLDialogElement;
+      if (dialog)
+      {
+        dialog.showModal();
+      }
+    });
+  });
+})
+</script>
 <style>
+h3 {
+    font: var(--body-large);
+    color: var(--color__normal);
+}
+.lucide-x {
+    transition: scale var(--transition-duration) var(--transition-easing);
+}
+.close-button {
+    display: flex;
+    background: none;
+}
+.close-button:hover .lucide-x{
+    scale: 1.2;
+}
+.dialog {
+    padding-inline: var(--spacing-07);
+    padding-block: var(--spacing-06);
+
+    border-radius: var(--radius-xl);
+    background-color: var(--background__layer1);
+    max-height: 90vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+}
+dialog{
+    transition: display var(--dialog-animation-duration) var(--dialog-animation-easing) allow-discrete, overlay var(--dialog-animation-duration) var(--dialog-animation-easing) allow-discrete;
+     animation: close var(--dialog-animation-duration) var(--dialog-animation-easing-out) forwards;
+     &::backdrop {
+         animation: close var(--dialog-animation-duration) var(--dialog-animation-easing-out) forwards;
+      }
+     &[open] {
+       animation: open var(--dialog-animation-duration) var(--dialog-animation-easing-in) forwards;
+       &::backdrop
+       {
+           animation: open var(--dialog-animation-duration) var(--dialog-animation-easing-in) forwards;
+       }
+     }
+     @starting-style {
+          opacity: 0;
+        }
+    border: none;
+    margin: auto auto;
+    background: none;
+    padding: var(--spacing-07);
+    max-width: 75rem;
+    width: fit-content;
+    overscroll-behavior: contain;
+    overflow: hidden;
+}
+dialog::backdrop
+{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+@keyframes open {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes close {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.dialog-content {
+    padding-top: var(--spacing-06);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-06);
+}
+.projectTitle {
+    padding-bottom: var(--spacing-03);
+}
+.experience {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-03);
+}
+.experience p {
+    color: var(--color__light);
+    font: var(--body-small)
+}
+.dialog-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    & .technology {
+        padding-inline: 0;
+        background: none;
+        cursor: default;
+        &:hover{
+            background-color: var(--background__layer1);
+
+        }
+    }
+}
 .technology-list {
     padding: 0;
     margin: 0;
@@ -72,10 +283,17 @@ const { technologyTitle } = localizedStrings;
         grid-template-columns: auto;
     }*/
     .technology__description{
-        display: none;
+        /*display: none;*/
+    }
+    dialog {
+        padding: var(--spacing-05)
+    }
+    .dialog{
+        padding-inline: var(--spacing-06);
+        padding-block: var(--spacing-05);
     }
 }
-@media (width <= 22rem)
+@media (width <= 30rem)
 {
     .technology-list {
         grid-template-columns: 1fr;
@@ -86,11 +304,17 @@ const { technologyTitle } = localizedStrings;
 .technology {
     display: flex;
     align-items: center;
+    text-align: left;
     gap: var(--spacing-05);
     background-color: var(--background__layer2);
     border-radius: var(--radius-m);
     padding-block: var(--spacing-04);
     padding-inline: var(--spacing-06);
+    cursor: pointer;
+    transition: background-color var(--transition-duration) var(--transition-easing);
+    &:hover{
+        background-color: var(--background__layer3);
+    }
 
 }
 .technology__text {
@@ -108,5 +332,42 @@ const { technologyTitle } = localizedStrings;
 .technology__image{
     width: var(--spacing-07);
     height: var(--spacing-07);
+}
+.project {
+    background-color: var(--background__layer2);
+    border-radius: var(--radius-l);
+    padding: var(--spacing-06);
+    gap: var(--spacing-05);
+    display: flex;
+    flex-direction: column;
+}
+.project__heading {
+    flex-grow: 1;
+}
+.project__image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-m);
+}
+.tag-container {
+    display: flex;
+    gap: var(--spacing-03);
+    flex-wrap: wrap;
+}
+.projects-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--spacing-06);
+    padding: 0;
+}
+@media (width <= 56.25rem) {
+    .projects-list {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (width <= 37.5rem) {
+    .projects-list {
+        grid-template-columns: 1fr;
+    }
 }
 </style>
