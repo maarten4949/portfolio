@@ -168,8 +168,9 @@
         var(--body-small-mono__font-size)/var(--body-small-mono__line-height)
         var(---font-mono);
 
-    --transition-duration: 200ms;
+    --transition-duration: 300ms;
     --transition-easing: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --animation-duration: 600ms;
     --short-animation-duration: 300ms;
     --dialog-animation-duration: 300ms;
     --dialog-animation-easing: cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -417,6 +418,7 @@ button {
         scale var(--transition-duration) var(--transition-easing);
     transform-origin: bottom center;
     overflow: visible;
+    animation-fill-mode: both;
 }
 .lucide-mail,
 .lucide-mail .rectangle,
@@ -444,10 +446,57 @@ button {
 }
 .booped .lucide-linkedin {
     .i-base {
-        transform: scaleY(0.9);
+        animation: i-base var(--animation-duration) var(--transition-easing);
+        /*transform: scaleY(0.9);*/
     }
     .i-circle {
+        /*transform: translateY(-5px);*/
+        animation: i-circle var(--animation-duration) var(--transition-easing);
+    }
+    .n {
+        animation: n var(--animation-duration) var(--transition-easing);
+    }
+}
+@keyframes i-base {
+    0% {
+        transform: scaleY(1);
+    }
+    35% {
+        transform: scaleY(1);
+    }
+    65% {
+        transform: scaleY(0.9);
+    }
+    100% {
+        transform: scaleY(1);
+    }
+}
+@keyframes i-circle {
+    0% {
+        transform: translateY(0px);
+    }
+    35% {
         transform: translateY(-5px);
+    }
+    /*70% {
+        transform: translateY(0px);
+    }*/
+    65% {
+        transform: translateY(2.5px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+@keyframes n {
+    35% {
+        transform: scaleY(1);
+    }
+    65% {
+        transform: scaleY(0.95);
+    }
+    100% {
+        transform: scaleY(1);
     }
 }
 .booped .lucide-mail {
@@ -588,6 +637,7 @@ select:open::picker-icon {
 @media (prefers-reduced-motion: reduce) {
     :root {
         --transition-duration: 0s !important;
+        --animation-duration: 0s !important;
         --dialog-animation-duration: 0s !important;
         --short-animation-duration: 0s !important;
         --large-animation-duration: 0s !important;
