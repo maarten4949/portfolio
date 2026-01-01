@@ -15,7 +15,11 @@ const { heroTitle, heroDescription, downloadResume, seeProjects } =
     </div>
     <div class="hero__actions">
         <Boop borderRadius="var(--radius-m)">
-            <a href="#" class="button">
+            <a
+                href={`/resume/${currentLocale}/resume_public.pdf`}
+                target="_blank"
+                class="button"
+            >
                 <span>{downloadResume}</span>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
