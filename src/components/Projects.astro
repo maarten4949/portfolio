@@ -12,7 +12,7 @@ const projects = await getCollection("projects", ({ id }) => {
 const localizedStrings = await import(
     `../locales/${currentLocale}/general.json`
 );
-const { projectTitle } = localizedStrings;
+const { projectTitle, viewProjectButton } = localizedStrings;
 ---
 
 <section id="projects" class="category">
@@ -54,7 +54,7 @@ const { projectTitle } = localizedStrings;
                                 )}
                                 target="_blank"
                             >
-                                View Project{" "}
+                                {viewProjectButton}
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="24"

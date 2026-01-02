@@ -8,5 +8,6 @@
   "NotFoundMessage": "Oeps, we konden deze pagina niet vinden.",
   "NotFoundButton": "Terug naar homepagina",
   "ServerErrorMessage": "Oops, er ging iets verkeerd...",
-  "ServerErrorButton": "Terug naar homepagina"
+  "ServerErrorButton": "Terug naar homepagina",
+  "viewProjectButton": "Project bekijken"
 }
