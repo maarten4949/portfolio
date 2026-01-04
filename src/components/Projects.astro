@@ -4,6 +4,7 @@ import { getCollection } from "astro:content";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import Tag from "../components/Tag.astro";
 import Boop from "./Boop.astro";
+import { Image } from "astro:assets";
 const currentLocale = Astro.currentLocale ? Astro.currentLocale : "en";
 const projects = await getCollection("projects", ({ id }) => {
     const [lang, ...slugParts] = id.split("/");
@@ -29,10 +30,11 @@ const { projectTitle, viewProjectButton } = localizedStrings;
                     filePath?: string;
                 }) => (
                     <article class="project">
-                        <img
+                        <Image
                             class="project__image"
-                            src={project.data.image.src}
+                            src={project.data.image}
                             alt={project.data.title}
+                            inferSize={true}
                         />
                         <div class="project__heading">
                             <h3>{project.data.title}</h3>

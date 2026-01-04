@@ -9,6 +9,8 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@fontsource-variable/google-sans-code": "^5.2.3",
+    "@fontsource/google-sans-flex": "^5.2.1",
     "astro": "^5.16.6",
     "lucide": "^0.562.0"
   }

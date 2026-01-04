@@ -2,6 +2,7 @@
 import { getCollection, getEntry, getEntries, type InferEntrySchema, type RenderedContent } from "astro:content";
 import Tag from "./Tag.astro";
 import Boop from "./Boop.astro";
+import { Image } from "astro:assets";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
 const title = "Technologies";
@@ -33,7 +34,7 @@ const { technologyTitle } = localizedStrings;
                 filePath?: string;
             }) => (
                 <button class="technology dialog-button" id={technology.id}>
-                    <img class="technology__image" src={technology.data.image.src} alt="Logo of {technology.data.title}" />
+                    <Image class="technology__image" src={technology.data.image} inferSize={true} alt="Logo of {technology.data.title}" />
                     <div class="technology__text">
                         <span class="technology__title">{technology.data.title}</span>
                         <span class="technology__description">{technology.data.description}</span>

@@ -4,6 +4,7 @@ import { getEntry } from "astro:content";
 import ProjectLayout from "../../../layouts/ProjectLayout.astro";
 import Tag from "../../../components/Tag.astro";
 import Boop from "../../../components/Boop.astro";
+import { Image } from "astro:assets";
 export async function getStaticPaths() {
     const projects = await getCollection("projects");
     return projects.map((project) => {
@@ -35,8 +36,9 @@ if (!project) {
 >
     <section class="project-content">
         <div class="project-heading">
-            <img
-                src={project.data.image.src}
+            <Image
+                inferSize={true}
+                src={project.data.image}
                 alt={project.data.title}
                 class="project__image"
             />
