@@ -166,7 +166,7 @@
         var(--font-mono);
     --body-small-mono: var(--body-small-mono__font-weight)
         var(--body-small-mono__font-size)/var(--body-small-mono__line-height)
-        var(---font-mono);
+        var(--font-mono);
 
     --transition-duration: 300ms;
     --transition-easing: cubic-bezier(0.25, 0.1, 0.25, 1);

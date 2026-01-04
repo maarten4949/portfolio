@@ -11,4 +11,7 @@ export default defineConfig({
       redirectToDefaultLocale: true,
     },
   },
+  build: {
+    inlineStylesheets: "always",
+  },
 });

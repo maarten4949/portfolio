@@ -2,7 +2,7 @@
 import { getCollection, getEntry, getEntries, type InferEntrySchema, type RenderedContent } from "astro:content";
 import Tag from "./Tag.astro";
 import Boop from "./Boop.astro";
-import { Image } from "astro:assets";
+import {Image} from "astro:assets";
 import { getRelativeLocaleUrl } from "astro:i18n";
 
 const title = "Technologies";
@@ -34,7 +34,7 @@ const { technologyTitle } = localizedStrings;
                 filePath?: string;
             }) => (
                 <button class="technology dialog-button" id={technology.id}>
-                    <Image class="technology__image" src={technology.data.image} inferSize={true} alt="Logo of {technology.data.title}" />
+                    <Image class="technology__image" src={technology.data.image} alt="Logo of {technology.data.title}" />
                     <div class="technology__text">
                         <span class="technology__title">{technology.data.title}</span>
                         <span class="technology__description">{technology.data.description}</span>
@@ -51,7 +51,7 @@ const { technologyTitle } = localizedStrings;
 
                     <div class="dialog-header">
                         <div class="technology">
-                            <img class="technology__image" src={technology.data.image.src} alt="Logo of {technology.data.title}" />
+                            <Image class="technology__image" src={technology.data.image} alt="Logo of {technology.data.title}" />
                             <div class="technology__text">
                                 <span class="technology__title">{technology.data.title}</span>
                                 <span class="technology__description">{technology.data.description}</span>
@@ -73,9 +73,9 @@ const { technologyTitle } = localizedStrings;
 
                                 {referencedProjects.get(technology.id)?.map((project: any) => (
                                 <article class="project">
-                                    <img
+                                    <Image
                                         class="project__image"
-                                        src={project.data.image.src}
+                                        src={project.data.image}
                                         alt={project.data.title}
                                     />
                                     <div class="project__heading">

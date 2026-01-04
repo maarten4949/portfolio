@@ -34,7 +34,10 @@ const { projectTitle, viewProjectButton } = localizedStrings;
                             class="project__image"
                             src={project.data.image}
                             alt={project.data.title}
-                            inferSize={true}
+                            widths={[320, 640]}
+                            quality={70}
+                            sizes="(max-width: 768px) 90vw, 600px"
+                            layout="constrained"
                         />
                         <div class="project__heading">
                             <h3>{project.data.title}</h3>
