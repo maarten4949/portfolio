@@ -94,7 +94,7 @@
     --scrollbar__background: var(--grey-20);
 
     /* Font styles*/
-    --font-mono: Google Sans Code, sans-serif;
+    --font-mono: Google Sans Code Variable, sans-serif;
     --font-sans-serif: Google Sans Flex, sans-serif;
 
     --heading-h1__font-size: var(--typescale-12);
