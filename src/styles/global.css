@@ -1,4 +1,3 @@
-@import "global.css";
 :root {
     /* Colors */
     --brand: #fff41a;
@@ -177,7 +176,7 @@
     --dialog-animation-easing: cubic-bezier(0.25, 0.1, 0.25, 1);
     --dialog-animation-easing-out: ease-in;
     --dialog-animation-easing-in: ease-out;
-    --large-animation-duration: 1s;
+    --large-animation-duration: 600ms;
     --large-animation-easing: cubic-bezier(0.25, 0.1, 0.25, 1);
 
     color-scheme: light dark;
