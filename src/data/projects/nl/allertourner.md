@@ -1,8 +1,10 @@
 ---
 title: Aller Tourner
 description: Dit is een webshop om pottenbakken workshops te verkopen.
-longDescription: This is an e-commerce site that started as a small two-person assignment in high school (basic CRUD website, only adding, updating, inserting and deleting products as an admin was required). My teammate wanted to use it in production, but wasn’t that interested in programming herself, so I continued working on the site after high school, adding new features and improving the webshop as a freelance developer. I made the entire backend in php, I also did all the frontend javascript and about 80% of frontend html and css.
 links: [{url: "https://allertourner.be/", label: "Site Bezoeken"}]
 tags: ["PHP", "Vanilla JS", "MySQL", "In Production", "Client Work"]
 image: "../../../assets/images/allertourner.png"
 ---
+Aller Tourner was gestart als een klein project per 2 toen ik in het middelbaar zat. Het was een basic CRUD app, enkel lezen, toevoegen, updaten en deleten van producten was nodig. Mijn teamgenoot wou het ook gebruiken in productie, maar was zelf niet echt geïnteresseerd in programmeren, dus ik heb eraan verdergewerkt na school, nieuwe features toegevoegd (zoals betalingen, cadeaubonnen, bevestegingsmails etc) als een freelancer.
+
+Ik heb de hele backend gemaakt in php, alle javascript gedaan en ongeveer 80% van de HTML en CSS.

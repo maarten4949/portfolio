@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import { getEntry } from "astro:content";
 import ProjectLayout from "../../../layouts/ProjectLayout.astro";
 import Tag from "../../../components/Tag.astro";
@@ -27,6 +27,7 @@ if (!project) {
         statusText: "Not Found",
     });
 }
+const { Content } = await render(project);
 ---
 
 <ProjectLayout
@@ -52,9 +53,7 @@ if (!project) {
                 </div>
             </div>
         </div>
-        <p>
-            {project.data.longDescription}
-        </p>
+        <Content />
         <div class="button-container">
             {
                 project.data.links.map(

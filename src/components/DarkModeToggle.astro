@@ -56,13 +56,11 @@ import Boop from "./Boop.astro";
                 document.documentElement.classList.remove("no-transition");
             });
         } else {
-            console.log("no transition");
             toggleTheme(theme);
         }
     };
     const toggleTheme = (theme) => {
         localStorage.setItem("theme", theme);
-        console.log("localstorage set: " + localStorage.getItem("theme"));
         document.documentElement.setAttribute("data-theme", theme);
         if (button === undefined) {
             button = document.querySelector(".dark-mode-toggle");
@@ -74,22 +72,15 @@ import Boop from "./Boop.astro";
                 button.classList.remove("dark");
             }
         } else {
-            console.log("button is not defined");
+            console.warning("Theme button is not defined");
         }
     };
     const localStorageTheme = localStorage?.getItem("theme") ?? "";
     if (["dark", "light"].includes(localStorageTheme)) {
-        console.log(
-            "theme set due to localstorage set: " +
-                localStorage.getItem("theme"),
-        );
-
         setTheme(localStorageTheme, true);
     } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        console.log("Dark mode is preferred");
         setTheme("dark", true);
     } else {
-        console.log("Light mode is preferred");
         setTheme("light", true);
     }
 
@@ -100,7 +91,6 @@ import Boop from "./Boop.astro";
                 const prefersReducedMotion = window.matchMedia(
                     "(prefers-reduced-motion: reduce)",
                 ).matches;
-                console.log("prefers reduced motion: " + prefersReducedMotion);
                 setTheme(
                     document.documentElement.getAttribute("data-theme") ===
                         "dark"

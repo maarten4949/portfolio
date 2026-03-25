@@ -14,7 +14,6 @@ const projects = defineCollection({
     z.object({
       title: z.string().min(1).max(100),
       description: z.string().min(1).max(500),
-      longDescription: z.string().min(1).max(5000),
       image: image(),
       tags: z.array(z.string().min(1).max(100)).min(1).max(10),
       links: z

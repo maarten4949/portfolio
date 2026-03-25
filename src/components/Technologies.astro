@@ -19,7 +19,7 @@ for (const technology of technologies) {
 }
 console.log(referencedProjects);
 const localizedStrings = await import(`../locales/${currentLocale}/general.json`);
-const { technologyTitle } = localizedStrings;
+const { technologyTitle, projectTitleInTechnologyPopup } = localizedStrings;
 ---
 <section class="category">
     <h2>{technologyTitle}</h2>
@@ -68,7 +68,7 @@ const { technologyTitle } = localizedStrings;
                         </div>
                         {referencedProjects.get(technology.id).length > 0 && (
                             <div>
-                                <h3 class="projectTitle">Projects</h3>
+                                <h3 class="projectTitle">{projectTitleInTechnologyPopup}</h3>
                                 <div class="projects-list">
 
                                 {referencedProjects.get(technology.id)?.map((project: any) => (
@@ -181,7 +181,7 @@ h3 {
     overscroll-behavior: contain;
 }
 dialog{
-    transition: display var(--dialog-animation-duration) var(--dialog-animation-easing) allow-discrete, overlay var(--dialog-animation-duration) var(--dialog-animation-easing) allow-discrete;
+    transition: display var(--dialog-animation-duration) var(--dialog-animation-easing) allow-discrete, overlay var(--dialog-animation-duration) var(--dialog-animation-easing), transform var(--dialog-animation-duration) var(--dialog-animation-easing) allow-discrete;
      animation: close var(--dialog-animation-duration) var(--dialog-animation-easing-out) forwards;
      &::backdrop {
          animation: close var(--dialog-animation-duration) var(--dialog-animation-easing-out) forwards;
@@ -287,7 +287,40 @@ dialog::backdrop
         /*display: none;*/
     }
     dialog {
-        padding: var(--spacing-05)
+        padding: 0;
+        margin: 0;
+        max-height: 100dvh;
+        height: 100dvh;
+        @starting-style {
+             opacity: 0;
+             transform: translateY(100px);
+           }
+    }
+    @keyframes open {
+      from {
+        opacity: 0;
+        transform: translateY(100px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes close {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(100px);
+      }
+    }
+    .dialog {
+        width: 100dvw;
+        height: 100dvh;
+        max-height: none;
     }
     .dialog{
         padding-inline: var(--spacing-06);

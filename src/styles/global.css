@@ -99,7 +99,7 @@
 
     --heading-h1__font-size: var(--typescale-12);
     --heading-h1__font-weight: 400;
-    --heading-h1__line-height: var(--spacing-10);
+    --heading-h1__line-height: 3.75rem;
 
     --heading-h2__font-size: var(--typescale-7);
     --heading-h2__font-weight: 400;
@@ -530,7 +530,10 @@ button {
     scale: 1.1;
 }
 
-.no-transition .button {
+.no-transition .button,
+.no-transition select,
+.no-transition .technology,
+.no-transition .project {
     transition: none !important;
 }
 @keyframes scaleIn {

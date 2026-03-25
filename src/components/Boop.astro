@@ -18,7 +18,6 @@ const { borderRadius, timing = 300 } = Astro.props;
                 element as HTMLElement;
                 const timing =
                     Number((element as HTMLElement).dataset.timing) || 300;
-                console.log("timing: " + timing);
                 if (element.classList.contains("booped")) {
                     return;
                 }
