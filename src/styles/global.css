@@ -94,8 +94,8 @@
     --scrollbar__background: var(--grey-20);
 
     /* Font styles*/
-    --font-mono: Google Sans Code Variable, sans-serif;
-    --font-sans-serif: Google Sans Flex, sans-serif;
+    --font-mono: var(--font-google-sans-code), sans-serif;
+    --font-sans-serif: var(--font-google-sans-flex), sans-serif;
 
     --heading-h1__font-size: var(--typescale-12);
     --heading-h1__font-weight: 400;

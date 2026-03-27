@@ -19,7 +19,7 @@ const projects = defineCollection({
       links: z
         .array(
           z.object({
-            url: z.string().url().min(1).max(200),
+            url: z.url().min(1).max(200),
             label: z.string().min(1).max(100),
             isPrimary: z.boolean().default(false),
           }),

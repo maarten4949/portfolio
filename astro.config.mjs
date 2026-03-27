@@ -1,5 +1,4 @@
-// @ts-check
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,4 +13,18 @@ export default defineConfig({
   build: {
     inlineStylesheets: "always",
   },
+  fonts: [
+    {
+      provider: fontProviders.fontsource(),
+      cssVariable: "--font-google-sans-flex",
+      name: "Google Sans Flex",
+      styles: ["normal"],
+    },
+    {
+      provider: fontProviders.fontsource(),
+      cssVariable: "--font-google-sans-code",
+      name: "Google Sans Code",
+      styles: ["normal"],
+    },
+  ],
 });
