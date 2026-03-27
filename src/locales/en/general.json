@@ -1,6 +1,7 @@
 {
   "heroTitle": "Hi, I’m Maarten Schaep",
-  "heroDescription": "A 2nd year MCT student specializing in full-stack development, based in Belgium.",
+  "heroDescription": "I'm a 2nd year MCT student specializing in full-stack development, based in Belgium. I have experience in both frontend and backend, mainly focused around .NET, React, Figma and Flutter.",
+  "heroImageAlt": "Close up image of Maarten Schaep",
   "projectTitle": "Projects",
   "projectTitleInTechnologyPopup": "Featured Projects",
   "technologyTitle": "Technologies",

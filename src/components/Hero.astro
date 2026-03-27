@@ -1,77 +1,114 @@
 ---
 const currentLocale = Astro.currentLocale ? Astro.currentLocale : "en";
 import Boop from "../components/Boop.astro";
+import { Image } from "astro:assets";
+
 const localizedStrings = await import(
     `../locales/${currentLocale}/general.json`
 );
-const { heroTitle, heroDescription, downloadResume, seeProjects } =
-    localizedStrings;
+const {
+    heroTitle,
+    heroDescription,
+    downloadResume,
+    seeProjects,
+    heroImageAlt,
+} = localizedStrings;
 ---
 
 <section class="hero">
-    <div class="hero__text">
-        <h1>{heroTitle}</h1>
-        <p class="subtitle">{heroDescription}</p>
+    <div class="hero__left">
+        <div class="hero__text">
+            <h1>{heroTitle}</h1>
+            <p class="description">{heroDescription}</p>
+        </div>
+        <div class="hero__actions">
+            <Boop borderRadius="var(--radius-m)">
+                <a
+                    href={`/resume/${currentLocale}/resume_public.pdf`}
+                    target="_blank"
+                    class="button"
+                >
+                    <span>{downloadResume}</span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-download-icon lucide-download icon"
+                        ><path d="M12 15V3" class="arrow"></path><path
+                            d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                            class="tray"></path><path
+                            d="m7 10 5 5 5-5"
+                            class="arrow-head"></path></svg
+                    >
+                </a>
+            </Boop>
+            <Boop borderRadius="var(--radius-m)">
+                <a href="#projects" class="button button--primary">
+                    <span>{seeProjects}</span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="lucide lucide-arrow-right-icon lucide-arrow-right icon"
+                        ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"
+                        ></path></svg
+                    >
+                </a>
+            </Boop>
+        </div>
     </div>
-    <div class="hero__actions">
-        <Boop borderRadius="var(--radius-m)">
-            <a
-                href={`/resume/${currentLocale}/resume_public.pdf`}
-                target="_blank"
-                class="button"
+    <div class="hero-image-container">
+        <Boop timing="2000">
+            <Image
+                class="hero__image"
+                src={import("../assets/images/maarten.jpg")}
+                alt={heroImageAlt}
+                widths={[512, 1024]}
+                quality={100}
+                sizes="(max-width: 768px) 90vw, 600px"
+                layout="constrained"
+            />
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-hand-icon lucide-hand"
+                ><path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2"></path><path
+                    d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2"></path><path
+                    d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8"></path><path
+                    d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"
+                ></path></svg
             >
-                <span>{downloadResume}</span>
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-download-icon lucide-download icon"
-                    ><path d="M12 15V3" class="arrow"></path><path
-                        d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                        class="tray"></path><path
-                        d="m7 10 5 5 5-5"
-                        class="arrow-head"></path></svg
-                >
-            </a>
-        </Boop>
-        <Boop borderRadius="var(--radius-m)">
-            <a href="#projects" class="button button--primary">
-                <span>{seeProjects}</span>
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-arrow-right-icon lucide-arrow-right icon"
-                    ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"
-                    ></path></svg
-                >
-            </a>
         </Boop>
     </div>
 </section>
 <style>
     .hero {
         margin: 0 auto;
-        max-width: 80ch;
         text-align: center;
         padding-block: var(--spacing-13);
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: var(--spacing-07);
+        gap: var(--spacing-09);
         animation: fadeIn var(--large-animation-duration)
             var(--large-animation-easing);
     }
@@ -80,6 +117,11 @@ const { heroTitle, heroDescription, downloadResume, seeProjects } =
         gap: var(--spacing-07);
         justify-content: center;
         flex-wrap: wrap;
+    }
+    @media (width <= 50rem) {
+        .hero {
+            flex-direction: column-reverse;
+        }
     }
     @media (width <= 30rem) {
         .hero {
@@ -95,11 +137,41 @@ const { heroTitle, heroDescription, downloadResume, seeProjects } =
     .hero__text {
         display: flex;
         gap: var(--spacing-04);
-        align-items: center;
+        align-items: flex-start;
+        text-align: left;
         justify-content: center;
         flex-direction: column;
     }
-    .subtitle {
-        font: var(--heading-subtitle);
+    .hero__left {
+        flex-grow: 1;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        gap: var(--spacing-05);
+    }
+    .hero-image-container {
+        position: relative;
+    }
+    .lucide-hand {
+        position: absolute;
+        z-index: 1;
+        width: var(--spacing-10);
+        height: var(--spacing-10);
+        top: 10%;
+        right: 20%;
+    }
+    .hero__image {
+        position: relative;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        max-width: 15rem;
+        z-index: 2;
+        height: auto;
+        border-radius: var(--radius-round);
+    }
+    .description {
+        font: var(--body-large);
+        max-width: 65ch;
     }
 </style>

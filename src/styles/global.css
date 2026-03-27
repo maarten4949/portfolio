@@ -170,6 +170,7 @@
 
     --transition-duration: 300ms;
     --transition-easing: cubic-bezier(0.25, 0.1, 0.25, 1);
+    --long-animation-duration: 2000ms;
     --animation-duration: 600ms;
     --short-animation-duration: 300ms;
     --dialog-animation-duration: 300ms;
@@ -390,6 +391,14 @@ button {
             scale var(--transition-duration) var(--transition-easing);
     }
 }
+.lucide-hand {
+    transform-origin: center;
+    transition:
+        transform var(--long-animation-duration) var(--transition-easing),
+        translate var(--long-animation-duration) var(--transition-easing),
+        rotate var(--long-animation-duration) var(--transition-easing),
+        scale var(--long-animation-duration) var(--transition-easing);
+}
 .lucide-arrow-right {
     transition:
         transform var(--transition-duration) var(--transition-easing),
@@ -459,6 +468,32 @@ button {
     }
     .n {
         animation: n var(--animation-duration) var(--transition-easing);
+    }
+}
+.booped .lucide-hand {
+    animation: hand-wave var(--long-animation-duration) var(--transition-easing);
+}
+@keyframes hand-wave {
+    0% {
+        translate: 0 0;
+        rotate: 10deg;
+    }
+    35% {
+        rotate: 60deg;
+    }
+    50% {
+        translate: 110% -80%;
+        rotate: -20deg;
+    }
+    65% {
+        rotate: 60deg;
+    }
+    75% {
+        translate: 110% -80%;
+        rotate: 60deg;
+    }
+    100% {
+        translate: 0 0;
     }
 }
 @keyframes i-base {
