@@ -475,6 +475,7 @@ button {
 }
 @keyframes hand-wave {
     0% {
+        opacity: 1;
         translate: 0 0;
         rotate: 10deg;
     }
@@ -492,7 +493,11 @@ button {
         translate: 110% -80%;
         rotate: 60deg;
     }
+    99% {
+        opacity: 1;
+    }
     100% {
+        opacity: 0;
         translate: 0 0;
     }
 }

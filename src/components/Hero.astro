@@ -75,9 +75,10 @@ const {
                 class="hero__image"
                 src={import("../assets/images/maarten.jpg")}
                 alt={heroImageAlt}
-                widths={[512, 1024]}
-                quality={100}
-                sizes="(max-width: 768px) 90vw, 600px"
+                width={256}
+                height={256}
+                quality={80}
+                sizes="256px"
                 layout="constrained"
             />
             <svg
@@ -154,6 +155,7 @@ const {
         position: relative;
     }
     .lucide-hand {
+        opacity: 0;
         position: absolute;
         z-index: 1;
         width: var(--spacing-10);
