@@ -14,14 +14,24 @@ import LanguageSelect from "./LanguageSelect.astro";
 <style>
     nav {
         padding: var(--spacing-06);
-        padding-block-start: var(--spacing-05);
-        padding-block-end: var(--spacing-07);
+        /*padding-block-start: var(--spacing-0);
+        padding-block-end: var(--spacing-05);*/
         width: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
         gap: var(--spacing-05);
+    }
+    @media (width <= 75rem) {
+        nav {
+            padding-inline: var(--spacing-09);
+        }
+    }
+    @media (width <= 30rem) {
+        nav {
+            padding-inline: var(--spacing-06);
+        }
     }
     .actions {
         display: flex;

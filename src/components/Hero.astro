@@ -125,11 +125,14 @@ const {
     @media (width <= 50rem) {
         .hero {
             flex-direction: column-reverse;
+            padding-block: var(--spacing-11);
+            padding-block-start: var(--spacing-07);
+            padding-block-end: 0;
+            gap: var(--spacing-07);
         }
     }
     @media (width <= 30rem) {
         .hero {
-            padding-block-end: var(--spacing-07);
         }
         .hero__actions {
             gap: var(--spacing-05);
