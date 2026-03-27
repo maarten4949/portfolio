@@ -36,13 +36,13 @@ const { Content } = await render(project);
         : "Maarten Schaep - Project"}
 >
     <section class="project-content">
+        <Image
+            inferSize={true}
+            src={project.data.image}
+            alt={project.data.title}
+            class="project__image"
+        />
         <div class="project-heading">
-            <Image
-                inferSize={true}
-                src={project.data.image}
-                alt={project.data.title}
-                class="project__image"
-            />
             <div class="project-info">
                 <div class="">
                     <h1>{project.data.title}</h1>
@@ -53,7 +53,9 @@ const { Content } = await render(project);
                 </div>
             </div>
         </div>
-        <Content />
+        <div class="project-body">
+            <Content />
+        </div>
         <div class="button-container">
             {
                 project.data.links.map(
@@ -102,11 +104,24 @@ const { Content } = await render(project);
     </section>
 </ProjectLayout>
 <style>
+    .project-body :global(p) {
+        margin-bottom: var(--spacing-05);
+    }
+    .project-body :global(img) {
+        max-height: 80vh;
+        width: auto;
+        text-align: center;
+        display: block;
+        margin: 0 auto;
+        padding-block: var(--spacing-05);
+    }
+
     .project-content {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         gap: var(--spacing-08);
+        max-width: 48rem;
     }
     .project-heading {
         display: flex;

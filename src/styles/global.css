@@ -248,6 +248,10 @@ body {
     display: flex;
     flex-direction: column;
 }
+p,
+li {
+    max-width: 65ch;
+}
 
 h1 {
     font: var(--heading-h1);
