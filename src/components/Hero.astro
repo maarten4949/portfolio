@@ -76,10 +76,13 @@ const {
                 src={import("../assets/images/maarten.jpg")}
                 alt={heroImageAlt}
                 width={256}
+                widths={[256]}
                 height={256}
                 quality={80}
                 sizes="256px"
                 layout="constrained"
+                fetchpriority="high"
+                loading="eager"
             />
             <svg
                 xmlns="http://www.w3.org/2000/svg"
