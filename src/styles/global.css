@@ -274,7 +274,12 @@ main {
         padding-inline: var(--spacing-08);
     }
 }
-img {
+@media (width <= 22rem) {
+    main {
+        padding-inline: var(--spacing-05);
+    }
+}
+@media img {
     max-width: 100%;
 }
 button {
@@ -683,6 +688,36 @@ select:open::picker-icon {
             border: 1px solid white;
             border-radius: var(--radius-m);
         }
+    }
+}
+@media (width<= 18rem) {
+    :root {
+        --heading-h1__font-size: var(--typescale-10);
+        --heading-h1__line-height: var(--spacing-09);
+
+        --heading-h2__font-size: var(--typescale-6);
+        --heading-h2__line-height: var(--spacing-06);
+
+        --heading-subtitle__font-size: var(--typescale-5);
+        --heading-subtitle__line-height: var(--spacing-06);
+
+        --body-regular__font-size: var(--typescale-3);
+        --body-regular__line-height: var(--spacing-06);
+
+        --body-large__font-size: var(--typescale-4);
+        --body-large__line-height: var(--spacing-06);
+
+        --body-small-mono__font-size: var(--typescale-1);
+        --body-small-mono__line-height: var(--spacing-05);
+
+        --body-regular-mono__font-size: var(--typescale-3);
+        --body-regular-mono__line-height: var(--spacing-06);
+
+        --body-large-mono__font-size: var(--typescale-5);
+        --body-large-mono__line-height: var(--spacing-07);
+
+        --body-small__line-height: var(--spacing-05);
+        --body-small__font-size: var(--typescale-1);
     }
 }
 
