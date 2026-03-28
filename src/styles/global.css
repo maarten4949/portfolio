@@ -279,7 +279,7 @@ main {
         padding-inline: var(--spacing-05);
     }
 }
-@media img {
+img {
     max-width: 100%;
 }
 button {
