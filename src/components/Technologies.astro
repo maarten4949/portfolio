@@ -17,7 +17,6 @@ for (const technology of technologies) {
     const projects = await getEntries(technology.data.projects);
     referencedProjects.set(technology.id, projects);
 }
-console.log(referencedProjects);
 const localizedStrings = await import(`../locales/${currentLocale}/general.json`);
 const { technologyTitle, projectTitleInTechnologyPopup } = localizedStrings;
 ---
@@ -39,12 +38,6 @@ const { technologyTitle, projectTitleInTechnologyPopup } = localizedStrings;
                         <span class="technology__title">{technology.data.title}</span>
                         <span class="technology__description">{technology.data.description}</span>
                     </div>
-
-                    {console.log(technology.data.projects)}
-                    <!-- {referencedProjects.get(technology.id)?.map((project: any) => (
-                        <span>{project.data.title}</span>
-                        <span>{project.data.description}</span>
-                    ))} -->
                 </button>
                 <dialog id={`dialog-${technology.id}`} closedby="any">
                     <div class="dialog">
@@ -77,6 +70,7 @@ const { technologyTitle, projectTitleInTechnologyPopup } = localizedStrings;
                                         class="project__image"
                                         src={project.data.image}
                                         alt={project.data.title}
+                                        loading="lazy"
                                     />
                                     <div class="project__heading">
                                         <h3>{project.data.title}</h3>
