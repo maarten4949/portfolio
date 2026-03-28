@@ -76,7 +76,9 @@ const {
                 src={import("../assets/images/maarten.jpg")}
                 alt={heroImageAlt}
                 width={240}
-                densities={[1, 2]}
+                height={240}
+                widths={[240, 420, 480]}
+                sizes="(max-width: 600px) 240px, 420px"
                 quality={50}
                 fetchpriority="high"
                 loading="eager"
