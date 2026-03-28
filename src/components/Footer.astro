@@ -62,7 +62,6 @@ import Boop from "./Boop.astro";
 
 <style>
     footer {
-        width: 100%;
         padding-top: var(--spacing-09);
         padding-bottom: var(--spacing-06);
         display: grid;
@@ -81,7 +80,11 @@ import Boop from "./Boop.astro";
     }
     @media (width <= 30rem) {
         footer {
+            width: 100%;
             padding-bottom: var(--spacing-07);
+        }
+        footer :global(.boop) {
+            width: 100%;
         }
     }
     @media (width <= 20rem) {
