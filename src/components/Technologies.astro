@@ -70,6 +70,9 @@ const { technologyTitle, projectTitleInTechnologyPopup } = localizedStrings;
                                         class="project__image"
                                         src={project.data.image}
                                         alt={project.data.title}
+                                        widths={[320, 640]}
+                                        quality={50}
+                                        sizes="(max-width: 768px) 90vw, 300px"
                                         loading="lazy"
                                     />
                                     <div class="project__heading">
