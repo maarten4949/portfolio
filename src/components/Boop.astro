@@ -1,9 +1,9 @@
 ---
-const { borderRadius, timing = 300 } = Astro.props;
+const { borderRadius, timing = 300, class: className } = Astro.props;
 ---
 
 <span
-    class="boop"
+    class={`boop ${className}`}
     data-timing={timing}
     style={`border-radius: ${borderRadius ? borderRadius : "0"};`}
 >
@@ -40,5 +40,11 @@ const { borderRadius, timing = 300 } = Astro.props;
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    .justify-end {
+        justify-self: end;
+    }
+    .padding-m {
+        padding-inline: var(--spacing-06);
     }
 </style>

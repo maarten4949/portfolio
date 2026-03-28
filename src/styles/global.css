@@ -98,11 +98,11 @@
     --font-sans-serif: var(--font-google-sans-flex), sans-serif;
 
     --heading-h1__font-size: var(--typescale-12);
-    --heading-h1__font-weight: 400;
+    --heading-h1__font-weight: 600;
     --heading-h1__line-height: 3.75rem;
 
     --heading-h2__font-size: var(--typescale-7);
-    --heading-h2__font-weight: 400;
+    --heading-h2__font-weight: 600;
     --heading-h2__line-height: var(--spacing-07);
 
     --heading-subtitle__font-size: var(--typescale-6);

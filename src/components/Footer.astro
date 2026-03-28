@@ -3,7 +3,7 @@ import Boop from "./Boop.astro";
 ---
 
 <footer>
-    <Boop>
+    <Boop class="justify-end padding-m">
         <a class="link" href="mailto:contact@maartenschaep.com" target="_blank">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,8 @@ import Boop from "./Boop.astro";
             <span>Mail</span>
         </a>
     </Boop>
-    <Boop timing="600">
+
+    <Boop timing="600" class="padding-m">
         <a
             class="link"
             href="https://www.linkedin.com/in/maartenschaep/"
@@ -61,17 +62,22 @@ import Boop from "./Boop.astro";
 
 <style>
     footer {
+        width: 100%;
         padding-top: var(--spacing-09);
         padding-bottom: var(--spacing-06);
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         justify-content: center;
+        justify-items: start;
         align-items: center;
-        gap: var(--spacing-09);
+        gap: var(--spacing-06);
         flex-wrap: wrap;
+        padding-inline: var(--spacing-09);
+        max-width: 75rem;
+        margin: 0 auto;
     }
     @media (width <= 30rem) {
         footer {
-            gap: var(--spacing-05);
             padding-bottom: var(--spacing-07);
         }
     }
