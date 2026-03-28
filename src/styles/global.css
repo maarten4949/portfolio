@@ -271,7 +271,7 @@ main {
 }
 @media (width <= 30rem) {
     main {
-        padding-inline: var(--spacing-06);
+        padding-inline: var(--spacing-08);
     }
 }
 img {
@@ -613,7 +613,7 @@ button {
     }
 }
 
-@media (width <= 30rem) {
+@media (width <= 34rem) {
     .button-container {
         & .boop {
             flex-grow: 1;
